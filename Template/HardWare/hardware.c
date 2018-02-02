@@ -255,6 +255,42 @@ void EXTI0_IRQHandler(void)
 /*******************************************************************************************/
 
 /*************************************ÎÞÏßÄ£¿é**********************************************/
+u8   Cnt1ms = 0;             // 1ms????,?1ms?? 
+u8   SendFlag = 0;           // =1,??????,=0???
+
+u16  SendTime = 1;           // ??????????
+u16  RecvWaitTime = 0;       // ??????                
+u16  SendCnt = 0;            // ?????????                
+
+u8 AckBuffer[ACK_LENGTH] = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
+u8 RecvCnt;
+u8 PaTabel[] = { 0xc0, 0xC8, 0x84, 0x60, 0x68, 0x34, 0x1D, 0x0E};
+static const u8 CC1101InitData[22][2]= 
+{
+  {CC1101_IOCFG0,      0x06},
+  {CC1101_FIFOTHR,     0x47},
+  {CC1101_PKTCTRL0,    0x05},
+  {CC1101_CHANNR,      0x01},
+  {CC1101_FSCTRL1,     0x06},
+  {CC1101_FREQ2,       0x0F},
+  {CC1101_FREQ1,       0x62},
+  {CC1101_FREQ0,       0x76},
+  {CC1101_MDMCFG4,     0xF6},
+  {CC1101_MDMCFG3,     0x43},
+  {CC1101_MDMCFG2,     0x13},
+  {CC1101_DEVIATN,     0x15},
+  {CC1101_MCSM0,       0x18},
+  {CC1101_FOCCFG,      0x16},
+  {CC1101_WORCTRL,     0xFB},
+  {CC1101_FSCAL3,      0xE9},
+  {CC1101_FSCAL2,      0x2A},
+  {CC1101_FSCAL1,      0x00},
+  {CC1101_FSCAL0,      0x1F},
+  {CC1101_TEST2,       0x81},
+  {CC1101_TEST1,       0x35},
+  {CC1101_MCSM1,       0x3B},
+};
+
 
 void CC_CSN_LOW(void)
 {
@@ -301,6 +337,34 @@ void CC1101SetAddress( u8 address, ADDR_MODE AddressMode)
 		CC1101WriteReg(CC1101_PKTCTRL1, btmp);
 }
 
+void CC1101SetSYNC(u16 Sync)
+{
+	CC1101WriteReg(CC1101_SYNC1, 0xFF & (Sync >>8));
+	CC1101WriteReg(CC1101_SYNC0, 0xFF & Sync);
+}
+
+void CC1101WriteMultiReg( u8 addr, u8 *buff, u8 size )
+{
+    u8 i;
+    CC_CSN_LOW( );
+    SPI_ExchangeByte( addr | WRITE_BURST );
+    for( i = 0; i < size; i ++ )
+    {
+        SPI_ExchangeByte( *( buff + i ) );
+    }
+    CC_CSN_HIGH( );
+}
+
+u8 CC1101ReadStatus( u8 addr )
+{
+    u8 i;
+    CC_CSN_LOW( );
+    SPI_ExchangeByte( addr | READ_BURST);
+    i = SPI_ExchangeByte( 0xFF );
+    CC_CSN_HIGH( );
+    return i;
+}
+
 void CC1101_Init(void)
 {
 	u8 x;
@@ -318,9 +382,111 @@ void CC1101_Init(void)
 				for( x = 0; x < 100; x ++ );
 				printf("resetting\r\n");
     }  
-		
+	
+	for(x = 0; x < 22; x++)
+	{
+		CC1101WriteReg(CC1101InitData[x][0], CC1101InitData[x][1]);
+	}
 	CC1101SetAddress( 0x05, BROAD_0AND255 );
+	
+	CC1101SetSYNC( 0x8799 );
+	
+	CC1101WriteReg(CC1101_MDMCFG1,   0x72); //Modem Configuration
+	
+	CC1101WriteMultiReg(CC1101_PATABLE, PaTabel, 8 );
+
+	x = CC1101ReadStatus( CC1101_PARTNUM );//for test, must be 0x80
+	printf("PARTNUM = 0x%02x\r\n", x);
+	x = CC1101ReadStatus( CC1101_VERSION );//for test, refer to the datasheet
+	printf("VERSION = 0x%02x\r\n", x);	
+
 }
 
+void CC1101SetIdle( void )
+{
+    CC1101WriteCmd(CC1101_SIDLE);
+}
+
+void CC1101ClrTXBuff( void )
+{
+    CC1101SetIdle();//MUST BE IDLE MODE
+    CC1101WriteCmd( CC1101_SFTX );
+}
+
+void CC1101SetTRMode( TRMODE mode )
+{
+    if( mode == TX_MODE )
+    {
+        CC1101WriteReg(CC1101_IOCFG0,0x46);
+        CC1101WriteCmd( CC1101_STX );
+    }
+    else if( mode == RX_MODE )
+    {
+        CC1101WriteReg(CC1101_IOCFG0,0x46);
+        CC1101WriteCmd( CC1101_SRX );
+    }
+}
+
+
+void CC1101SendPacket( u8 *txbuffer, u8 size, TX_DATA_MODE mode )
+{
+    u8 address;
+    if( mode == BROADCAST )             { address = 0; }
+    else if( mode == ADDRESS_CHECK )    { address = CC1101ReadReg( CC1101_ADDR ); }
+
+    CC1101ClrTXBuff( );
+    
+    if( ( CC1101ReadReg( CC1101_PKTCTRL1 ) & ~0x03 ) != 0 )
+    {
+        CC1101WriteReg( CC1101_TXFIFO, size + 1 );
+        CC1101WriteReg( CC1101_TXFIFO, address );
+    }
+    else
+    {
+        CC1101WriteReg( CC1101_TXFIFO, size );
+    }
+
+    CC1101WriteMultiReg( CC1101_TXFIFO, txbuffer, size );
+    CC1101SetTRMode( TX_MODE );
+    while( gd_eval_key_state_get(IRQ0_IO) != 0 );
+    while( gd_eval_key_state_get(IRQ0_IO) == 0 );
+
+    CC1101ClrTXBuff( );
+}
+
+
+u8 RF_SendPacket(u8 *Sendbuffer, u8 length)
+{
+    u8 ack_flag = 0;         // =1,???????,=0???
+    u8 error = 0, i=0, ack_len=0, ack_buffer[65]={ 0 }, TxBuffer[100];
+
+    CC1101SendPacket(Sendbuffer, length, ADDRESS_CHECK);    // ????   
+    CC1101SetTRMode(RX_MODE);           // ??????,????
+    RecvWaitTime = RECV_TIMEOUT;        // ?????????800ms
+    
+    ack_flag = 1;
+    
+//    while (CC_IRQ_READ() != 0)
+//	{
+//		if (0 == RecvWaitTime)      { ack_flag = 0; break; }
+//	}
+//    
+//    if (0 != ack_flag)                          // ?????????
+//    {
+//        while (CC_IRQ_READ() == 0);
+//		ack_len = CC1101RecPacket(ack_buffer);  // ???????
+
+//        // ????????,???????10-19
+//        for (i=0, error=0; i<10; i++ )
+//        {
+//            if (ack_buffer[i] != (i+10))    { error=1; break; }
+//							
+//        }
+//        
+//        if ((ack_len==10) && (error==0))    { printf("Get ACK=%s\r\n", ack_buffer);return (1); } // ????  
+//    }
+    
+    return (1);  
+}
 
 /*******************************************************************************************/
