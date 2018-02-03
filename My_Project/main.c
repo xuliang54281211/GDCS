@@ -63,6 +63,16 @@ void vTaskAttack(void *pvParameters)
 		vTaskDelay(1);
 	}
 }
+
+void vTaskBeAttack(void *pvParameters)
+{
+	while(1)
+	{
+		
+		vTaskDelay(100);
+	}
+}
+
 void vTaskAudio(void *pvParameters)
 {
 	
@@ -137,7 +147,7 @@ static void AppTaskCreate (void)
 {
     xTaskCreate( vTaskAttack, "vTaskAttack", 16,NULL,5,NULL);
     xTaskCreate( vTaskInfrared,"infrared",128,NULL,2, NULL);
-		//xTaskCreate( vTaskAudio,"Audio",16,NULL,3, NULL);
+		xTaskCreate( vTaskAudio,"vTaskBeAttack",16,NULL,3, NULL);
 		xTaskCreate( vTaskCore,"vTaskCore",64,NULL,4, NULL);
 }
 /*!
