@@ -1,9 +1,9 @@
 .\output\queue.o: ..\..\FreeRTOS\Source\queue.c
-.\output\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\output\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\output\queue.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\queue.o: G:\MDK\ARM\ARMCC\Bin\..\include\string.h
 .\output\queue.o: ..\..\FreeRTOS\Source\include\FreeRTOS.h
-.\output\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\output\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\queue.o: G:\MDK\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\queue.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\queue.o: ..\..\FreeRTOS\FreeRTOSConfig.h
 .\output\queue.o: ..\..\FreeRTOS\Source\include\projdefs.h
 .\output\queue.o: ..\..\FreeRTOS\Source\include\portable.h

@@ -106,7 +106,7 @@ typedef enum
 #define USER_KEY_EXTI_PIN_SOURCE         GPIO_EVENT_PIN_14
 #define USER_KEY_EXTI_IRQn               EXTI10_15_IRQn
 
-#define IRQ0	GPIO_PIN_4
+#define IRQ0	GPIO_PIN_5
 #define IRQ0_PORT	GPIOA
 /* function declarations */
 /* configure led GPIO */

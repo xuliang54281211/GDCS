@@ -43,14 +43,9 @@ void vTaskAttack(void *pvParameters)
 {
 	while(1)
 	{
-		
-		if(gd_eval_key_state_get(KEY_WAKEUP) == RESET)
-		{
-			vTaskDelay(20/portTICK_RATE_MS);
-			if(gd_eval_key_state_get(KEY_WAKEUP) == RESET)
+			if(gd_eval_key_state_get(IRQ0_IO) == RESET)
 			{
-			attack_flag = 0;
-				audio_bit = 0;
+				//audio_bit = 0;
 			timer_enable(TIMER1);//38Khz载波
 			timer_enable(TIMER2);//红外调制
 			timer_enable(TIMER3);//60KHz音频载波
@@ -58,8 +53,6 @@ void vTaskAttack(void *pvParameters)
 			printf("I'm Task222\r\n");
 				vTaskDelay(ATTACK_FRE/portTICK_RATE_MS);
 			}
-		}
-		
 		vTaskDelay(1);
 	}
 }
@@ -69,7 +62,16 @@ void vTaskBeAttack(void *pvParameters)
 	while(1)
 	{
 		
-		vTaskDelay(100);
+		/**********************************************
+		接收到信号，存于Infra_revbuf[]
+		***********************************************/
+		if(infra_recflag)
+		{
+			infra_recbuf = 0;
+			
+		}
+		printf("I'm Task55555555\r\n");
+		vTaskDelay(500);
 	}
 }
 
@@ -103,6 +105,7 @@ void vTaskInfrared(void *pvParameters)
 				timer_disable(TIMER1);
 				ctl_flag = 0;
 				printf("send a message!\r\n");
+				
 			}
 			if(uid_temp & 0x01)
 			{
@@ -145,10 +148,10 @@ void vTaskCore(void *pvParameters)
 
 static void AppTaskCreate (void)
 {
-    xTaskCreate( vTaskAttack, "vTaskAttack", 16,NULL,5,NULL);
-    xTaskCreate( vTaskInfrared,"infrared",128,NULL,2, NULL);
-		xTaskCreate( vTaskAudio,"vTaskBeAttack",16,NULL,3, NULL);
-		xTaskCreate( vTaskCore,"vTaskCore",64,NULL,4, NULL);
+    xTaskCreate( vTaskAttack, "vTaskAttack", 64,NULL,5,NULL);
+    xTaskCreate( vTaskInfrared,"infrared",64,NULL,2, NULL);
+		xTaskCreate( vTaskBeAttack,"vTaskBeAttack",64,NULL,4, NULL);
+		xTaskCreate( vTaskCore,"vTaskCore",64,NULL,3, NULL);
 }
 /*!
     \brief      main function
@@ -173,7 +176,7 @@ int main(void)
     /* TIMER configuration */
     timer_config();
 		
-		CC1101_Init();
+		//CC1101_Init();
 	
     /* ADC configuration */
    // adc_config();
