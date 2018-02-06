@@ -3,6 +3,7 @@
 ".\output\gd32f10x_it.o"
 ".\output\coretask.o"
 ".\output\main.o"
+".\output\infrared.o"
 ".\output\system_gd32f10x.o"
 ".\output\gd32f10x_bkp.o"
 ".\output\gd32f10x_crc.o"

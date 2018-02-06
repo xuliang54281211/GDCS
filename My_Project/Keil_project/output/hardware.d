@@ -1,13 +1,13 @@
 .\output\hardware.o: ..\HardWare\hardware.c
 .\output\hardware.o: ..\HardWare\hardware.h
 .\output\hardware.o: ..\core_include.h
-.\output\hardware.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdarg.h
-.\output\hardware.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdio.h
-.\output\hardware.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdlib.h
-.\output\hardware.o: G:\MDK\ARM\ARMCC\Bin\..\include\math.h
+.\output\hardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\output\hardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\hardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\hardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\output\hardware.o: ..\..\FreeRTOS\Source\include\FreeRTOS.h
-.\output\hardware.o: G:\MDK\ARM\ARMCC\Bin\..\include\stddef.h
-.\output\hardware.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\hardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\hardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\hardware.o: ..\..\FreeRTOS\FreeRTOSConfig.h
 .\output\hardware.o: ..\..\FreeRTOS\Source\include\projdefs.h
 .\output\hardware.o: ..\..\FreeRTOS\Source\include\portable.h
@@ -58,5 +58,7 @@
 .\output\hardware.o: ..\gpio.h
 .\output\hardware.o: ..\USER\CoreTask.h
 .\output\hardware.o: ..\core_include.h
+.\output\hardware.o: ..\USER\Infrared.h
+.\output\hardware.o: ..\HardWare\hardware.h
 .\output\hardware.o: ..\HardWare\spi.h
 .\output\hardware.o: ..\HardWare\CC1101_REG.h

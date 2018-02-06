@@ -1,13 +1,12 @@
 .\output\coretask.o: ..\USER\CoreTask.c
-.\output\coretask.o: ..\USER\CoreTask.h
 .\output\coretask.o: ..\core_include.h
-.\output\coretask.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdarg.h
-.\output\coretask.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdio.h
-.\output\coretask.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdlib.h
-.\output\coretask.o: G:\MDK\ARM\ARMCC\Bin\..\include\math.h
+.\output\coretask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\output\coretask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\coretask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\coretask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\output\coretask.o: ..\..\FreeRTOS\Source\include\FreeRTOS.h
-.\output\coretask.o: G:\MDK\ARM\ARMCC\Bin\..\include\stddef.h
-.\output\coretask.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\coretask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\coretask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\coretask.o: ..\..\FreeRTOS\FreeRTOSConfig.h
 .\output\coretask.o: ..\..\FreeRTOS\Source\include\projdefs.h
 .\output\coretask.o: ..\..\FreeRTOS\Source\include\portable.h
@@ -57,3 +56,6 @@
 .\output\coretask.o: ..\timer.h
 .\output\coretask.o: ..\gpio.h
 .\output\coretask.o: ..\USER\CoreTask.h
+.\output\coretask.o: ..\core_include.h
+.\output\coretask.o: ..\USER\Infrared.h
+.\output\coretask.o: ..\HardWare\hardware.h

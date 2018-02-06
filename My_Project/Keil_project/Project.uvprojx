@@ -428,6 +428,11 @@
               <FileType>1</FileType>
               <FilePath>..\main.c</FilePath>
             </File>
+            <File>
+              <FileName>Infrared.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Infrared.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1111,6 +1116,11 @@
               <FileType>1</FileType>
               <FilePath>..\main.c</FilePath>
             </File>
+            <File>
+              <FileName>Infrared.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Infrared.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1754,6 +1764,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>Infrared.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Infrared.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2435,6 +2450,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>Infrared.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Infrared.c</FilePath>
             </File>
           </Files>
         </Group>

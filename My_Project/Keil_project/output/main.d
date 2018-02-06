@@ -1,7 +1,7 @@
 .\output\main.o: ..\main.c
 .\output\main.o: ..\..\Firmware\CMSIS\GD\GD32F10x\Include\gd32f10x.h
 .\output\main.o: ..\..\Firmware\CMSIS\core_cm3.h
-.\output\main.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\main.o: ..\..\Firmware\CMSIS\core_cmInstr.h
 .\output\main.o: ..\..\Firmware\CMSIS\core_cmFunc.h
 .\output\main.o: ..\..\Firmware\CMSIS\GD\GD32F10x\Include\system_gd32f10x.h
@@ -29,16 +29,16 @@
 .\output\main.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_exmc.h
 .\output\main.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_can.h
 .\output\main.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_enet.h
-.\output\main.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\output\main.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_misc.h
 .\output\main.o: ..\main.h
 .\output\main.o: ..\..\Utilities\gd32f10x_eval.h
 .\output\main.o: ..\core_include.h
-.\output\main.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdarg.h
-.\output\main.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdio.h
-.\output\main.o: G:\MDK\ARM\ARMCC\Bin\..\include\math.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\output\main.o: ..\..\FreeRTOS\Source\include\FreeRTOS.h
-.\output\main.o: G:\MDK\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\output\main.o: ..\..\FreeRTOS\FreeRTOSConfig.h
 .\output\main.o: ..\..\FreeRTOS\Source\include\projdefs.h
 .\output\main.o: ..\..\FreeRTOS\Source\include\portable.h
@@ -58,4 +58,5 @@
 .\output\main.o: ..\gpio.h
 .\output\main.o: ..\USER\CoreTask.h
 .\output\main.o: ..\core_include.h
+.\output\main.o: ..\USER\Infrared.h
 .\output\main.o: ..\HardWare\hardware.h

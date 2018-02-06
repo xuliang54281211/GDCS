@@ -34,6 +34,7 @@ typedef enum
     KEY_TAMPER = 1,
     KEY_USER = 2,
 		IRQ0_IO = 3,
+		IRAIN = 4
 } key_typedef_enum;
 
 typedef enum 
@@ -77,7 +78,7 @@ typedef enum
 #define EVAL_COM2_GPIO_PORT              GPIOA
 #define EVAL_COM2_GPIO_CLK               RCU_GPIOA
 
-#define KEYn                             4U
+#define KEYn                             5U
 
 /* tamper push-button */
 #define TAMPER_KEY_PIN                   GPIO_PIN_13
@@ -108,6 +109,9 @@ typedef enum
 
 #define IRQ0	GPIO_PIN_5
 #define IRQ0_PORT	GPIOA
+
+#define IRAIN_PORT GPIOA
+#define IRAIN	GPIO_PIN_4
 /* function declarations */
 /* configure led GPIO */
 void gd_eval_led_init(led_typedef_enum lednum);

@@ -3,6 +3,13 @@
 #include "spi.h"
 #include "CC1101_REG.h"
 
+u32 ctl_flag;
+u32 i;
+u32 audio_bit;
+u16 IRAHighCnt, IRALowCnt;
+u8 timer2_modulate, InfraLen;
+u16 Infra_recvbuf[INFRA_RECV_BUFF_SIZE];
+extern xQueueHandle xQueueInfraredMsg;
 /*!
     \brief      configure the different system clocks
     \param[in]  none
@@ -170,27 +177,54 @@ void timer_config(void)
     /* auto-reload preload enable */
     timer_disable(TIMER0);
 }
-u32 ctl_flag;
 
-u32 i;
-
-u32 audio_bit;
-extern xQueueHandle xQueueInfraredMsg;
 void TIMER2_IRQHandler(void)
 {
 		if (RESET != timer_interrupt_flag_get(TIMER2, TIMER_INT_FLAG_UP))
 		{
-			ctl_flag++;
-			if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1500 ||ctl_flag == 1444))
+			if(timer2_modulate)
 			{
-				i = ctl_flag;
-				xQueueSendToBackFromISR(xQueueInfraredMsg, &i, 0);
-				if(ctl_flag == 1500)
+				ctl_flag++;
+				if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1500 ||ctl_flag == 1444))
 				{
-					ctl_flag = 1301;
+					i = ctl_flag;
+					xQueueSendToBackFromISR(xQueueInfraredMsg, &i, 0);
+					if(ctl_flag == 1500)
+					{
+						ctl_flag = 1301;
+					}
 				}
 			}
-				timer_interrupt_flag_clear(TIMER2, TIMER_INT_FLAG_UP);
+			//TODO_Input Infra signal detect
+			if(gd_eval_key_state_get(IRAIN))
+			{
+				/* High Level */
+				if(IRALowCnt)
+				{
+					IRALowCnt &= 0x7fff;
+					Infra_recvbuf[InfraLen++] = IRALowCnt;
+				}
+				IRALowCnt = 0;
+				
+				IRAHighCnt++;
+				if(IRAHighCnt >= 32767)
+					IRAHighCnt = 0;
+			}
+			else
+			{
+				/* Low Level */
+				if(IRAHighCnt)
+				{
+					IRAHighCnt |= 0x8000;
+					Infra_recvbuf[InfraLen++] = IRAHighCnt;
+				}
+				IRAHighCnt = 0;
+				
+				IRALowCnt++;
+				if(IRALowCnt >= 32767)
+					IRALowCnt = 0;
+			}
+			timer_interrupt_flag_clear(TIMER2, TIMER_INT_FLAG_UP);
 		}
 }
 
@@ -486,6 +520,44 @@ u8 RF_SendPacket(u8 *Sendbuffer, u8 length)
 //    }
     
     return (1);  
+}
+
+void RF_RecvHandler(void)
+{
+//    u8 error=0, i=0, length=0, recv_buffer[65]={ 0 };
+//    
+//    CC1101SetTRMode(RX_MODE);           // ??RF??????,????
+//    if (0 == CC_IRQ_READ())             // ?????????????? 
+//    {
+//        while (CC_IRQ_READ() == 0);
+
+//        // ????,?????
+//        for (i=0; i<65; i++)   { recv_buffer[i] = 0; } 
+//            
+//        length = CC1101RecPacket(recv_buffer);
+//       printf("recv_buffer=%s , length=%d\r\n", recv_buffer, length);
+//        for (i=0, error=0; i<length; i++)
+//        {
+//					printf("%c ", recv_buffer[i]);
+//            if (recv_buffer[i] != i)    { printf("recv[%d] error=%d\r\n",i, recv_buffer[i]);error=1; break; } // ????
+//        }
+//				printf("\r\n");
+//        if ((length==10) && (error==0))                     // ????
+//        {                            // LED??,????????
+//            delay_ms(10);
+//            
+//            CC1101SetTRMode(TX_MODE);   // ??????
+//            CC1101SendPacket(AckBuffer, ACK_LENGTH, ADDRESS_CHECK);
+//            printf("get wireless!\r\n");
+//						if(xQueueWirelessMsg)
+//						{
+//							xQueueSend(xQueueWirelessMsg, &recvWirelessMsg, 0);
+//						}
+//            RecvCnt++; 
+//        }
+//        
+//        CC1101SetTRMode(RX_MODE);           // ??RF??????,????
+//    }    
 }
 
 /*******************************************************************************************/

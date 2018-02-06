@@ -29,8 +29,9 @@ static rcu_periph_enum GPIO_CLK[LEDn] = {LED1_GPIO_CLK, LED2_GPIO_CLK,
 static uint32_t KEY_PORT[KEYn] = {WAKEUP_KEY_GPIO_PORT, 
                                   TAMPER_KEY_GPIO_PORT,
                                   USER_KEY_GPIO_PORT,
-																	IRQ0_PORT};
-static uint32_t KEY_PIN[KEYn] = {WAKEUP_KEY_PIN, TAMPER_KEY_PIN,USER_KEY_PIN, IRQ0};
+																	IRQ0_PORT,
+																	IRAIN_PORT};
+static uint32_t KEY_PIN[KEYn] = {WAKEUP_KEY_PIN, TAMPER_KEY_PIN,USER_KEY_PIN, IRQ0, IRAIN};
 static rcu_periph_enum KEY_CLK[KEYn] = {WAKEUP_KEY_GPIO_CLK, 
                                         TAMPER_KEY_GPIO_CLK,
                                         USER_KEY_GPIO_CLK};

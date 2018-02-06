@@ -37,43 +37,32 @@ void led_spark(void)
         timingdelaylocal = 1000U;
     }
 }
+extern u8 timer2_modulate;
 extern u8 attack_flag;
 extern u32 audio_bit;
+extern u8 GameOver;
 void vTaskAttack(void *pvParameters)
 {
 	while(1)
 	{
+		if(GameOver)
+		{
 			if(gd_eval_key_state_get(IRQ0_IO) == RESET)
 			{
 				//audio_bit = 0;
 			timer_enable(TIMER1);//38Khz载波
-			timer_enable(TIMER2);//红外调制
+			timer2_modulate = 1;
+			/*timer_enable(TIMER2)*/;//开启红外调制
 			timer_enable(TIMER3);//60KHz音频载波
 			timer_enable(TIMER0);//11.025kHz调制
 			printf("I'm Task222\r\n");
-				vTaskDelay(ATTACK_FRE/portTICK_RATE_MS);
+			vTaskDelay(ATTACK_FRE/portTICK_RATE_MS);
 			}
+		}
 		vTaskDelay(1);
 	}
 }
 
-void vTaskBeAttack(void *pvParameters)
-{
-	while(1)
-	{
-		
-		/**********************************************
-		接收到信号，存于Infra_revbuf[]
-		***********************************************/
-		if(infra_recflag)
-		{
-			infra_recbuf = 0;
-			
-		}
-		printf("I'm Task55555555\r\n");
-		vTaskDelay(500);
-	}
-}
 
 void vTaskAudio(void *pvParameters)
 {
@@ -101,7 +90,8 @@ void vTaskInfrared(void *pvParameters)
 				count = 0;
 				uid_temp =UID;
 				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
-				timer_disable(TIMER2);
+				//timer_disable(TIMER2);
+				timer2_modulate = 0;
 				timer_disable(TIMER1);
 				ctl_flag = 0;
 				printf("send a message!\r\n");
@@ -134,15 +124,6 @@ void vTaskInfrared(void *pvParameters)
 
 		}
 	vTaskDelay(1);
-	}
-}
-void vTaskCore(void *pvParameters)
-{
-	while(1)
-	{
-		
-	printf("I'm Task33333\r\n");
-	vTaskDelay(1000);
 	}
 }
 
@@ -180,6 +161,7 @@ int main(void)
 	
     /* ADC configuration */
    // adc_config();
+		CoreInit();
 		printf("Begin adc!\r\n");
 		printf("test over!\r\n");
 		//printf("Begin adc!\r\n");

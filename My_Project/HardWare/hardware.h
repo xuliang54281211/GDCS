@@ -36,4 +36,6 @@ void nvic_configuration(void);
 void gpio_config(void);
 void exti_config(void);
 void CC1101_Init(void);
+u8 RF_SendPacket(u8 *Sendbuffer, u8 length);
+void RF_RecvHandler(void);
 #endif
