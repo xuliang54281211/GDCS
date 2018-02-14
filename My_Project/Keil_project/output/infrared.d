@@ -60,3 +60,4 @@
 .\output\infrared.o: ..\core_include.h
 .\output\infrared.o: ..\USER\Infrared.h
 .\output\infrared.o: ..\HardWare\hardware.h
+.\output\infrared.o: ..\USER\RFID.h

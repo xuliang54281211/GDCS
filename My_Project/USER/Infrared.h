@@ -9,8 +9,8 @@ typedef struct{
 		u8 data_no;
 		u8 use_time;
 		u8 dec_len;
-		u16 high_cnt;
-		u16 low_cnt;
+		u32 high_cnt;
+		u32 low_cnt;
 		u8 head;
 		bool mut_en;
 		u16 mut_time;

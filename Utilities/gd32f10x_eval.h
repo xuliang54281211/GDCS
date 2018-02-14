@@ -34,7 +34,7 @@ typedef enum
     KEY_TAMPER = 1,
     KEY_USER = 2,
 		IRQ0_IO = 3,
-		IRAIN = 4
+		IRAIN_IO = 4
 } key_typedef_enum;
 
 typedef enum 

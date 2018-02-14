@@ -60,5 +60,6 @@
 .\output\hardware.o: ..\core_include.h
 .\output\hardware.o: ..\USER\Infrared.h
 .\output\hardware.o: ..\HardWare\hardware.h
+.\output\hardware.o: ..\USER\RFID.h
 .\output\hardware.o: ..\HardWare\spi.h
 .\output\hardware.o: ..\HardWare\CC1101_REG.h

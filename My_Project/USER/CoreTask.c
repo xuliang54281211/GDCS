@@ -63,6 +63,6 @@ void vTaskCore(void *pvParameters)
 		}
 		
 	printf("I'm Task33333\r\n");
-	vTaskDelay(10);
+	vTaskDelay(1000);
 	}
 }

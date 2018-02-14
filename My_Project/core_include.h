@@ -37,6 +37,7 @@ typedef uint8_t u8;
 #include "CoreTask.h"
 #include "Infrared.h"
 #include "hardware.h"
+#include "RFID.h"
 /***********System Struct**********/
 #define MYGUN 1
 #define MAX_MESSAGE 10

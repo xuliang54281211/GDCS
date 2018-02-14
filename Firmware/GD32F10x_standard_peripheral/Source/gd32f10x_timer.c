@@ -1834,3 +1834,53 @@ void timer_external_clock_mode1_disable(uint32_t timer_periph)
 {
     TIMER_SMCFG(timer_periph) &= ~(uint32_t)TIMER_SMCFG_SMC1;
 }
+
+void timer_input_polarity_config(uint32_t timer_periph, uint16_t channel, uint16_t icpolarity)
+{
+    switch(channel){
+    /* configure TIMER_CH_0 */
+    case TIMER_CH_0:
+        /* reset the CH0EN bit */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)TIMER_CHCTL2_CH0EN);
+
+        /* reset the CH0P and CH0NP bits */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)(TIMER_CHCTL2_CH0P | TIMER_CHCTL2_CH0NP));
+        TIMER_CHCTL2(timer_periph) |= (uint32_t)(icpolarity);
+
+        break;
+    
+    /* configure TIMER_CH_1 */
+    case TIMER_CH_1:
+        /* reset the CH1EN bit */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)TIMER_CHCTL2_CH1EN);
+
+        /* reset the CH1P and CH1NP bits */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)(TIMER_CHCTL2_CH1P | TIMER_CHCTL2_CH1NP));
+        TIMER_CHCTL2(timer_periph) |= (uint32_t)((uint32_t)(icpolarity)<< 4U);
+
+        break;
+    /* configure TIMER_CH_2 */
+    case TIMER_CH_2:
+        /* reset the CH2EN bit */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)TIMER_CHCTL2_CH2EN);
+
+        /* reset the CH2P and CH2NP bits */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)(TIMER_CHCTL2_CH2P|TIMER_CHCTL2_CH2NP));
+        TIMER_CHCTL2(timer_periph) |= (uint32_t)((uint32_t)(icpolarity)<< 8U);
+
+        break;
+    /* configure TIMER_CH_3 */
+    case TIMER_CH_3:
+        /* reset the CH3EN bit */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)TIMER_CHCTL2_CH3EN);
+
+        /* reset the CH3P bits */
+        TIMER_CHCTL2(timer_periph) &= (~(uint32_t)(TIMER_CHCTL2_CH3P));
+        TIMER_CHCTL2(timer_periph) |= (uint32_t)((uint32_t)(icpolarity)<< 12U);
+
+        break;
+    default:
+        break;
+    }
+
+}

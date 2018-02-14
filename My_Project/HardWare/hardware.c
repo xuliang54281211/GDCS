@@ -6,9 +6,9 @@
 u32 ctl_flag;
 u32 i;
 u32 audio_bit;
-u16 IRAHighCnt, IRALowCnt;
+u32 IRAHighCnt, IRALowCnt;
 u8 timer2_modulate, InfraLen;
-u16 Infra_recvbuf[INFRA_RECV_BUFF_SIZE];
+u32 Infra_recvbuf[INFRA_RECV_BUFF_SIZE];
 extern xQueueHandle xQueueInfraredMsg;
 /*!
     \brief      configure the different system clocks
@@ -70,6 +70,8 @@ void timer_config(void)
 {
 	    timer_oc_parameter_struct timer_ocintpara;
     timer_parameter_struct timer_initpara;
+	    timer_ic_parameter_struct timer_icinitpara;
+
 	    /* -----------------------------------------------------------------------
     TIMER1 configuration: generate 3 PWM signals with 3 different duty cycles:
     TIMER1CLK = SystemCoreClock / 108 = 1MHz
@@ -171,13 +173,23 @@ void timer_config(void)
     timer_initpara.repetitioncounter = 0;
     timer_init(TIMER0,&timer_initpara);
 		
+		/* TIMER0  configuration */
+    /* TIMER0 CH0 input capture configuration */
+    timer_icinitpara.icpolarity  = TIMER_IC_POLARITY_FALLING;
+    timer_icinitpara.icselection = TIMER_IC_SELECTION_DIRECTTI;
+    timer_icinitpara.icprescaler = TIMER_IC_PSC_DIV1;
+    timer_icinitpara.icfilter    = 0x0;
+    timer_input_capture_config(TIMER0,TIMER_CH_0,&timer_icinitpara);
+
+		
     timer_auto_reload_shadow_enable(TIMER0);
 		timer_interrupt_enable(TIMER0,TIMER_INT_FLAG_UP);
 
     /* auto-reload preload enable */
     timer_disable(TIMER0);
 }
-
+extern u8 end_one;
+extern u8 end_zero;
 void TIMER2_IRQHandler(void)
 {
 		if (RESET != timer_interrupt_flag_get(TIMER2, TIMER_INT_FLAG_UP))
@@ -185,24 +197,26 @@ void TIMER2_IRQHandler(void)
 			if(timer2_modulate)
 			{
 				ctl_flag++;
-				if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1500 ||ctl_flag == 1444))
+				if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1516 ||ctl_flag == 1412 || ctl_flag == 1801))
 				{
 					i = ctl_flag;
 					xQueueSendToBackFromISR(xQueueInfraredMsg, &i, 0);
-					if(ctl_flag == 1500)
-					{
-						ctl_flag = 1301;
-					}
+//					if(ctl_flag >= 1516 && !end_one && !end_zero)
+//					{
+//						ctl_flag = 1301;
+//					}
 				}
 			}
 			//TODO_Input Infra signal detect
-			if(gd_eval_key_state_get(IRAIN))
+			if(gd_eval_key_state_get(IRAIN_IO))
 			{
 				/* High Level */
-				if(IRALowCnt)
+				if(IRALowCnt >= 40)
 				{
 					IRALowCnt &= 0x7fff;
 					Infra_recvbuf[InfraLen++] = IRALowCnt;
+					if(InfraLen >= INFRA_RECV_BUFF_SIZE)
+						InfraLen = 0;
 				}
 				IRALowCnt = 0;
 				
@@ -213,36 +227,98 @@ void TIMER2_IRQHandler(void)
 			else
 			{
 				/* Low Level */
-				if(IRAHighCnt)
+				if(IRAHighCnt >= 40)
 				{
 					IRAHighCnt |= 0x8000;
 					Infra_recvbuf[InfraLen++] = IRAHighCnt;
+					if(InfraLen >= INFRA_RECV_BUFF_SIZE)
+						InfraLen = 0;
 				}
 				IRAHighCnt = 0;
 				
 				IRALowCnt++;
 				if(IRALowCnt >= 32767)
 					IRALowCnt = 0;
+			
 			}
 			timer_interrupt_flag_clear(TIMER2, TIMER_INT_FLAG_UP);
 		}
 }
-
+u8 IraSta;	  
+u16 Dval;		//下降沿时计数器的值
+u32 IraRec=0;	//红外接收到的数据	   		    
+u8  IraCnt=0;	//按键按下的次数	
 void TIMER0_UP_IRQHandler(void)
 {
-	u8 audio[23600];
+	//u8 audio[23600];
 	if (RESET != timer_interrupt_flag_get(TIMER0, TIMER_INT_FLAG_UP))
 	{
-		timer_channel_output_pulse_value_config(TIMER3,TIMER_CH_1,audio[audio_bit++]);
-		if(audio_bit >= 2000)
-		{
-			audio_bit = 0;
-			timer_disable(TIMER3);
-			timer_disable(TIMER0);
-			//printf("audio over!\r\n");
-		}
-		timer_interrupt_flag_clear(TIMER0, TIMER_INT_FLAG_UP);
+//		timer_channel_output_pulse_value_config(TIMER3,TIMER_CH_1,audio[audio_bit++]);
+//		if(audio_bit >= 2000)
+//		{
+//			audio_bit = 0;
+//			timer_disable(TIMER3);
+//			timer_disable(TIMER0);
+//			//printf("audio over!\r\n");
+//		}
+		if(IraSta&0x80)								//上次有数据被接收到了
+		{	
+			IraSta&=~0X10;							//取消上升沿已经被捕获标记
+			if((IraSta&0X0F)==0X00)IraSta|=1<<6;	//标记已经完成一次按键的键值信息采集
+			if((IraSta&0X0F)<14)IraSta++;
+			else
+			{
+				IraSta&=~(1<<7);					//清空引导标识
+				IraSta&=0XF0;						//清空计数器	
+			}								 	   	
+		}		
 	}
+	if (RESET != timer_interrupt_flag_get(TIMER0, TIMER_INT_FLAG_CH0))
+	{
+		if(gd_eval_key_state_get(IRAIN_IO))//高电平
+		{
+			timer_input_polarity_config(TIMER0,TIMER_CH_0,TIMER_IC_POLARITY_FALLING);
+			timer_counter_value_config(TIMER0, 0);
+			IraSta |= 0x10;
+		}
+		else
+		{
+			Dval = timer_channel_capture_value_register_read(TIMER0, TIMER_CH_0);
+			timer_input_polarity_config(TIMER0,TIMER_CH_0,TIMER_IC_POLARITY_RISING);
+			if(IraSta & 0x10)//已收到上升沿
+			{
+				if(IraSta & 0x80)//已收到引导码
+				{
+					if(Dval > 300 && Dval < 800)
+					{
+						IraRec <<= 1;
+						IraRec |= 0;
+					}
+					else if(Dval > 1400 && Dval < 1800)
+					{
+						IraRec <<= 1;
+						IraRec |= 1;
+					}
+					else if(Dval > 2200 && Dval < 2600)
+					{
+						IraCnt++;
+						IraSta &= 0xF0;
+					}
+					else
+					{
+						IraSta = 0;
+					}
+				}
+				else if(Dval > 4200 && Dval < 4700)//标准4.5ms高电平
+				{
+					IraSta |= 0x80;
+					IraCnt = 0;
+				}
+			}
+			IraSta &= ~(1<<4);
+		}
+	}
+	timer_interrupt_flag_clear(TIMER0, TIMER_INT_FLAG_UP| TIMER_INT_FLAG_CH0);
 }
 	
 /*******************************************************************************************/
@@ -259,9 +335,10 @@ void gpio_config(void)
 	rcu_periph_clock_enable(RCU_GPIOB);
 	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_7);
 	gpio_init(GPIOA, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_4 | GPIO_PIN_5);
-	
-	
-	
+	gpio_init(GPIOA, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8);
+	//
+	rcu_periph_clock_enable(RCU_GPIOB);
+	gpio_init(GPIOB, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, GPIO_PIN_6);
 }
 u8 attack_flag;
 /*******************************************************************************************/

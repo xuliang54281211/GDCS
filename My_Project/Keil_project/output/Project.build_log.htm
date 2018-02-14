@@ -22,40 +22,22 @@ Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
 E:\liangs\GD_CS\GDCS\My_Project\Keil_project\Project.uvprojx
-Project File Date:  02/05/2018
+Project File Date:  02/08/2018
 
 <h2>Output:</h2>
 Build target 'GD32F10X_MD'
 compiling Infrared.c...
-..\USER\Infrared.c(125): warning:  #1-D: last line of file ends without a newline
-  }
-..\USER\Infrared.c: 1 warning, 0 errors
-compiling hardware.c...
-..\HardWare\hardware.c(22): warning:  #188-D: enumerated type mixed with another type
-      rcu_periph_clock_enable(RCU_GPIOA |RCU_GPIOB |RCU_GPIOC| RCU_GPIOD);
-..\HardWare\hardware.c(25): warning:  #188-D: enumerated type mixed with another type
-      rcu_periph_clock_enable(RCU_TIMER1| RCU_TIMER2| RCU_TIMER3| RCU_TIMER4);
-..\HardWare\hardware.c(199): warning:  #188-D: enumerated type mixed with another type
-                        if(gd_eval_key_state_get(IRAIN))
-..\HardWare\hardware.c(280): warning:  #177-D: variable "i" was declared but never referenced
-        u8 i;
-..\HardWare\hardware.c(493): warning:  #550-D: variable "ack_flag" was set but never used
-      u8 ack_flag = 0;         // =1,???????,=0???
-..\HardWare\hardware.c(494): warning:  #177-D: variable "error" was declared but never referenced
-      u8 error = 0, i=0, ack_len=0, ack_buffer[65]={ 0 }, TxBuffer[100];
-..\HardWare\hardware.c(494): warning:  #177-D: variable "i" was declared but never referenced
-      u8 error = 0, i=0, ack_len=0, ack_buffer[65]={ 0 }, TxBuffer[100];
-..\HardWare\hardware.c(494): warning:  #177-D: variable "ack_len" was declared but never referenced
-      u8 error = 0, i=0, ack_len=0, ack_buffer[65]={ 0 }, TxBuffer[100];
-..\HardWare\hardware.c(494): warning:  #177-D: variable "ack_buffer" was declared but never referenced
-      u8 error = 0, i=0, ack_len=0, ack_buffer[65]={ 0 }, TxBuffer[100];
-..\HardWare\hardware.c(494): warning:  #177-D: variable "TxBuffer" was declared but never referenced
-      u8 error = 0, i=0, ack_len=0, ack_buffer[65]={ 0 }, TxBuffer[100];
-..\HardWare\hardware.c: 10 warnings, 0 errors
+..\USER\Infrared.c(138): warning:  #550-D: variable "uid" was set but never used
+        u32 uid, gun;
+..\USER\Infrared.c(138): warning:  #550-D: variable "gun" was set but never used
+        u32 uid, gun;
+..\USER\Infrared.c(6): warning:  #177-D: variable "IRA_REC" was declared but never referenced
+  static u32 IRA_REC; 
+..\USER\Infrared.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=10472 RO-data=292 RW-data=364 ZI-data=18956  
+Program Size: Code=11384 RO-data=292 RW-data=388 ZI-data=19036  
 FromELF: creating hex file...
-".\output\Project.axf" - 0 Error(s), 11 Warning(s).
+".\output\Project.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   E:\liangs\GD_CS\GDCS\My_Project\Keil_project\RTE

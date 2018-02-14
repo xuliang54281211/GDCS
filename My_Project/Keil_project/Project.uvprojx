@@ -433,6 +433,11 @@
               <FileType>1</FileType>
               <FilePath>..\USER\Infrared.c</FilePath>
             </File>
+            <File>
+              <FileName>RFID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\RFID.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1121,6 +1126,11 @@
               <FileType>1</FileType>
               <FilePath>..\USER\Infrared.c</FilePath>
             </File>
+            <File>
+              <FileName>RFID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\RFID.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1769,6 +1779,11 @@
               <FileName>Infrared.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\Infrared.c</FilePath>
+            </File>
+            <File>
+              <FileName>RFID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\RFID.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2455,6 +2470,11 @@
               <FileName>Infrared.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\Infrared.c</FilePath>
+            </File>
+            <File>
+              <FileName>RFID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\RFID.c</FilePath>
             </File>
           </Files>
         </Group>

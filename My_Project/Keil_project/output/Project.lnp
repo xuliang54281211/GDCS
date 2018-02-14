@@ -4,6 +4,7 @@
 ".\output\coretask.o"
 ".\output\main.o"
 ".\output\infrared.o"
+".\output\rfid.o"
 ".\output\system_gd32f10x.o"
 ".\output\gd32f10x_bkp.o"
 ".\output\gd32f10x_crc.o"

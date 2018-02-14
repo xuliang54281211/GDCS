@@ -15,6 +15,13 @@
 #include "core_include.h"
 #include "hardware.h"
 #define ATTACK_FRE 980
+/**********全局变量************/
+u8	UID = 0x8f;
+u8	GameBegin;
+
+/******************************/
+
+
 
 void rcu_config(void);
 void adc_config(void);
@@ -45,12 +52,12 @@ void vTaskAttack(void *pvParameters)
 {
 	while(1)
 	{
-		if(GameOver)
+		if(!GameOver)
 		{
 			if(gd_eval_key_state_get(IRQ0_IO) == RESET)
 			{
 				//audio_bit = 0;
-			timer_enable(TIMER1);//38Khz载波
+			timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);//38Khz载波
 			timer2_modulate = 1;
 			/*timer_enable(TIMER2)*/;//开启红外调制
 			timer_enable(TIMER3);//60KHz音频载波
@@ -68,12 +75,14 @@ void vTaskAudio(void *pvParameters)
 {
 	
 }
-u8	UID = 0x58;
+
 extern u32 ctl_flag;
+u8 end_zero, end_one;
 void vTaskInfrared(void *pvParameters)
 {
-	u8 bit_count = 0;
 	u32 count = 300;
+	u8 i = 8;
+	u8 bit_count = 0;
 	u8 uid_temp = UID;
 	xQueueInfraredMsg = xQueueCreate(1, sizeof(u32));
 	while(1)
@@ -81,47 +90,52 @@ void vTaskInfrared(void *pvParameters)
 		if(xQueueReceive(xQueueInfraredMsg, &count, 0) == pdPASS)
 		{
 			if(count == 900)//9ms高电平
-				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
-			if(count == 1300)//4ms低电平
-				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,100);
-			if(bit_count >= 7)
 			{
-				bit_count = 0;
-				count = 0;
-				uid_temp =UID;
 				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
-				//timer_disable(TIMER2);
-				timer2_modulate = 0;
-				timer_disable(TIMER1);
-				ctl_flag = 0;
-				printf("send a message!\r\n");
-				
 			}
-			if(uid_temp & 0x01)
+			if(count == 1300)//4ms低电平
 			{
-				if(count == 1356)
-					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
-				if(count == 1500)
+				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);
+			}
+			if(i != 0)
+			{
+				if((uid_temp >> (i-1)) & 0x01)
 				{
-					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,100);
-					uid_temp = uid_temp >> 1;
-					bit_count++;
-					count = 1300;
+					if(count == 1356)
+					{
+						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
+					}
+					if(count == 1516)
+					{
+						ctl_flag = 1301;
+						i--;
+						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);
+					}
+				}
+				else
+				{
+					if(count == 1356)
+					{
+						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
+					}
+					if(count == 1412)
+					{
+						ctl_flag = 1301;
+						i--;
+						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);
+					}
 				}
 			}
 			else
 			{
-				if(count == 1444)
-					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
-				if(count == 1500)
+				if(count >= 1801)
 				{
-					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,100);
-					uid_temp = uid_temp >> 1;
-					bit_count++;
-					count = 1300;
+					i = 8;
+					timer2_modulate = 0;
+					ctl_flag = 0;
+					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
 				}
 			}
-
 		}
 	vTaskDelay(1);
 	}
@@ -159,9 +173,16 @@ int main(void)
 		
 		//CC1101_Init();
 	
-    /* ADC configuration */
-   // adc_config();
-		CoreInit();
+//读取RFID卡(UID)后开始任务
+//	while(!GameBegin)
+//	{
+//		if(decoder_RFID())
+//		{
+//			GameBegin = 1;
+//			CoreInit();
+//		}
+//	}
+		
 		printf("Begin adc!\r\n");
 		printf("test over!\r\n");
 		//printf("Begin adc!\r\n");
@@ -172,7 +193,7 @@ int main(void)
       /* 启动调度，开始执行任务 */
       vTaskStartScheduler();
 
-  
+ 
     while(1);
 }
 

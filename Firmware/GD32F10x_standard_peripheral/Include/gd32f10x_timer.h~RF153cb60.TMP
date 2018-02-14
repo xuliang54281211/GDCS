@@ -691,5 +691,4 @@ void timer_external_clock_mode1_config(uint32_t timer_periph, uint32_t extpresca
 /* disable TIMER the external clock mode 1 */
 void timer_external_clock_mode1_disable(uint32_t timer_periph);
 
-void timer_input_polarity_config(uint32_t timer_periph, uint16_t channel, uint16_t icpolarity);
 #endif /* GD32F10X_TIMER_H */

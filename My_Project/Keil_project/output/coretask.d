@@ -59,3 +59,4 @@
 .\output\coretask.o: ..\core_include.h
 .\output\coretask.o: ..\USER\Infrared.h
 .\output\coretask.o: ..\HardWare\hardware.h
+.\output\coretask.o: ..\USER\RFID.h

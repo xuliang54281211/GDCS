@@ -61,3 +61,4 @@
 .\output\spi.o: ..\core_include.h
 .\output\spi.o: ..\USER\Infrared.h
 .\output\spi.o: ..\HardWare\hardware.h
+.\output\spi.o: ..\USER\RFID.h
