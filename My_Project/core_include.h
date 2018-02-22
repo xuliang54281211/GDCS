@@ -41,6 +41,7 @@ typedef uint8_t u8;
 /***********System Struct**********/
 #define MYGUN 1
 #define MAX_MESSAGE 10
+#define TESTUID 0x14003a
 typedef struct
 {
    u32 MY_UID;

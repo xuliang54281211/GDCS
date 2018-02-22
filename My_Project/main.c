@@ -16,7 +16,7 @@
 #include "hardware.h"
 #define ATTACK_FRE 980
 /**********全局变量************/
-u8	UID = 0x8f;
+
 u8	GameBegin;
 
 /******************************/
@@ -54,7 +54,7 @@ void vTaskAttack(void *pvParameters)
 	{
 		if(!GameOver)
 		{
-			if(gd_eval_key_state_get(IRQ0_IO) == RESET)
+			if(gd_eval_key_state_get(KEYIN_IO) == RESET)
 			{
 				//audio_bit = 0;
 			timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);//38Khz载波
@@ -81,9 +81,9 @@ u8 end_zero, end_one;
 void vTaskInfrared(void *pvParameters)
 {
 	u32 count = 300;
-	u8 i = 8;
+	u8 i = 24;
 	u8 bit_count = 0;
-	u8 uid_temp = UID;
+	u32 uid_temp = TESTUID;
 	xQueueInfraredMsg = xQueueCreate(1, sizeof(u32));
 	while(1)
 	{
@@ -130,7 +130,7 @@ void vTaskInfrared(void *pvParameters)
 			{
 				if(count >= 1801)
 				{
-					i = 8;
+					i = 24;
 					timer2_modulate = 0;
 					ctl_flag = 0;
 					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
@@ -171,7 +171,7 @@ int main(void)
     /* TIMER configuration */
     timer_config();
 		
-		//CC1101_Init();
+		CC1101_Init();
 	
 //读取RFID卡(UID)后开始任务
 //	while(!GameBegin)
@@ -187,7 +187,7 @@ int main(void)
 		printf("test over!\r\n");
 		//printf("Begin adc!\r\n");
 	//系统信息初始化
-		//CoreInit();
+		CoreInit();
 		AppTaskCreate();
 	
       /* 启动调度，开始执行任务 */

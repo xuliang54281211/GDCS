@@ -6,7 +6,7 @@ attacker_info_t * end;
 static u32 IRA_REC; 
 extern u8 InfraLen;
 extern u32 Infra_recvbuf[INFRA_RECV_BUFF_SIZE];
-
+extern u8 GameOver;
 static IRA_data_t IRA;
 
 void IRA_Init(void)
@@ -151,9 +151,17 @@ void vTaskBeAttack(void *pvParameters)
 			IRA_DecodeHandler(Infra_recvbuf[IRA.dec_len]);
 			if(IRA.data_array & 0x80000000)//收到一个数据
 			{
-				uid = IRA.data_array & 0xffff;
-				gun = (IRA.data_array >> 16) & 0xff;
+				end->UID = IRA.data_array & 0xffff;
+				end->Gun = (IRA.data_array >> 16) & 0xff;
+				end++;
+				if(end > &batk_array[MAX_MESSAGE])
+				{
+					end  = batk_array;
+				}
 				IRA.data_array = 0;
+				//发送被击信息
+				//org_report(uid, gun);
+				
 			}
 			IRA.dec_len++;
 			if(IRA.dec_len >= INFRA_RECV_BUFF_SIZE)

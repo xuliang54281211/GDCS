@@ -31,8 +31,40 @@ void CoreInit(void)
 	attacker_info.UID = 0;
 	attacker_info.Gun = 0;
 	
-	GameOver = 1;
+	GameOver = 0;
 	
+}
+
+void org_report(u32 uid, u32 gun)
+{
+	report_info_t report_info;
+	report_info.ATK_UID = uid;
+	report_info.MY_UID = uid;
+	switch(gun)
+	{
+		case USP:
+			report_info.health -= USP;
+			break;
+		case MP5:
+			report_info.health -= MP5;
+			break;
+		case M4:
+			report_info.health -= M4;
+			break;
+		case AK47:
+			report_info.health -= AK47;
+			break;
+		case AWP:
+			report_info.health -= AWP;
+			break;
+	}
+	if(report_info.health <= 0)
+	{
+		GameOver = 1;
+	}
+	report_info.health = 75;
+	RF_SendPacket((u8 *)&report_info, sizeof(report_info_t));
+
 }
 void vTaskCore(void *pvParameters)
 {
@@ -50,16 +82,21 @@ void vTaskCore(void *pvParameters)
 				GameOver = 0;//游戏结束 
 				/*后续动作...*/
 			}
+			begin++;
+			if(begin > &batk_array[MAX_MESSAGE])
+			{
+				begin  = batk_array;
+			}
 			//组织report包
 			report_info.health = Self_info.health;
 			report_info.MY_UID = MYUID;
 			report_info.ATK_UID = begin->UID;
-			if (RF_SendPacket((u8 *)&report_info, sizeof(report_info_t)))
+			//if (RF_SendPacket((u8 *)&report_info, sizeof(report_info_t)))
 			{
 				
 			}
 			
-			begin++;
+			
 		}
 		
 	printf("I'm Task33333\r\n");

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Mon Feb 12 17:32:14 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Feb 22 23:17:22 2018
 <BR><P>
 <H3>Maximum Stack Usage =        152 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -95,7 +95,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[46]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<P><STRONG><a name="[43]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
@@ -262,147 +262,136 @@ Global Symbols
 
 <P><STRONG><a name="[bf]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
-<P><STRONG><a name="[44]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
-</UL>
-
-<P><STRONG><a name="[c0]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
-
-<P><STRONG><a name="[c1]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
-
-<P><STRONG><a name="[43]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
-</UL>
-
-<P><STRONG><a name="[5b]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RF_SendPacket
-</UL>
-
-<P><STRONG><a name="[c2]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
-
-<P><STRONG><a name="[45]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
-</UL>
-
 <P><STRONG><a name="[41]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+<BR><BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
 </UL>
 <BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[c3]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[c0]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[c4]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[c1]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[c5]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[c2]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
 <P><STRONG><a name="[4]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_it.o(i.BusFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[49]"></a>CC1101ClrTXBuff</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, hardware.o(i.CC1101ClrTXBuff))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = CC1101ClrTXBuff &rArr; CC1101SetIdle &rArr; CC1101WriteCmd &rArr; SPI_ExchangeByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetIdle
-</UL>
-<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SendPacket
-</UL>
-
-<P><STRONG><a name="[4c]"></a>CC1101ReadReg</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, hardware.o(i.CC1101ReadReg))
+<P><STRONG><a name="[46]"></a>CC1101ReadReg</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, hardware.o(i.CC1101ReadReg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = CC1101ReadReg &rArr; SPI_ExchangeByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
+<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
 </UL>
-<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SendPacket
-</UL>
-
-<P><STRONG><a name="[50]"></a>CC1101SendPacket</STRONG> (Thumb, 120 bytes, Stack size 24 bytes, hardware.o(i.CC1101SendPacket))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = CC1101SendPacket &rArr; CC1101WriteMultiReg &rArr; SPI_ExchangeByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetTRMode
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ClrTXBuff
-</UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RF_SendPacket
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetAddress
 </UL>
 
-<P><STRONG><a name="[4a]"></a>CC1101SetIdle</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, hardware.o(i.CC1101SetIdle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = CC1101SetIdle &rArr; CC1101WriteCmd &rArr; SPI_ExchangeByte
+<P><STRONG><a name="[4a]"></a>CC1101ReadStatus</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, hardware.o(i.CC1101ReadStatus))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = CC1101ReadStatus &rArr; SPI_ExchangeByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
+<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
 </UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ClrTXBuff
-</UL>
-
-<P><STRONG><a name="[53]"></a>CC1101SetTRMode</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, hardware.o(i.CC1101SetTRMode))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = CC1101SetTRMode &rArr; CC1101WriteReg &rArr; SPI_ExchangeByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RF_SendPacket
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SendPacket
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
 </UL>
 
-<P><STRONG><a name="[4b]"></a>CC1101WriteCmd</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, hardware.o(i.CC1101WriteCmd))
+<P><STRONG><a name="[4b]"></a>CC1101SetAddress</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, hardware.o(i.CC1101SetAddress))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = CC1101SetAddress &rArr; CC1101WriteReg &rArr; SPI_ExchangeByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
+</UL>
+
+<P><STRONG><a name="[4d]"></a>CC1101SetSYNC</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, hardware.o(i.CC1101SetSYNC))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = CC1101SetSYNC &rArr; CC1101WriteReg &rArr; SPI_ExchangeByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
+</UL>
+
+<P><STRONG><a name="[4e]"></a>CC1101WriteCmd</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, hardware.o(i.CC1101WriteCmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = CC1101WriteCmd &rArr; SPI_ExchangeByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
+<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
 </UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetTRMode
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetIdle
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ClrTXBuff
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
 </UL>
 
-<P><STRONG><a name="[52]"></a>CC1101WriteMultiReg</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, hardware.o(i.CC1101WriteMultiReg))
+<P><STRONG><a name="[4f]"></a>CC1101WriteMultiReg</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, hardware.o(i.CC1101WriteMultiReg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = CC1101WriteMultiReg &rArr; SPI_ExchangeByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
+<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
 </UL>
-<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SendPacket
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
 </UL>
 
-<P><STRONG><a name="[51]"></a>CC1101WriteReg</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, hardware.o(i.CC1101WriteReg))
+<P><STRONG><a name="[4c]"></a>CC1101WriteReg</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, hardware.o(i.CC1101WriteReg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = CC1101WriteReg &rArr; SPI_ExchangeByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
+<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
 </UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetTRMode
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SendPacket
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetSYNC
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetAddress
 </UL>
 
-<P><STRONG><a name="[4f]"></a>CC_CSN_HIGH</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, hardware.o(i.CC_CSN_HIGH))
+<P><STRONG><a name="[50]"></a>CC1101_Init</STRONG> (Thumb, 138 bytes, Stack size 8 bytes, hardware.o(i.CC1101_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = CC1101_Init &rArr; SPI2_Init &rArr; gpio_init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_Init
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetSYNC
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetAddress
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadStatus
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[49]"></a>CC_CSN_HIGH</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, hardware.o(i.CC_CSN_HIGH))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CC_CSN_HIGH
 </UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_set
+<BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadStatus
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
 </UL>
 
-<P><STRONG><a name="[4d]"></a>CC_CSN_LOW</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, hardware.o(i.CC_CSN_LOW))
+<P><STRONG><a name="[47]"></a>CC_CSN_LOW</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, hardware.o(i.CC_CSN_LOW))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CC_CSN_LOW
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_reset
+<BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_reset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadStatus
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
+</UL>
+
+<P><STRONG><a name="[7c]"></a>CoreInit</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, coretask.o(i.CoreInit))
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gd32f10x_it.o(i.DebugMon_Handler))
@@ -411,9 +400,9 @@ Global Symbols
 <P><STRONG><a name="[10]"></a>EXTI0_IRQHandler</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, hardware.o(i.EXTI0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EXTI0_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_interrupt_flag_get
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_interrupt_flag_clear
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_interrupt_flag_get
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_interrupt_flag_clear
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f10x_md.o(RESET)
 </UL>
@@ -434,27 +423,30 @@ Global Symbols
 <P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gd32f10x_it.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[5a]"></a>RF_SendPacket</STRONG> (Thumb, 60 bytes, Stack size 96 bytes, hardware.o(i.RF_SendPacket))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = RF_SendPacket &rArr; CC1101SendPacket &rArr; CC1101WriteMultiReg &rArr; SPI_ExchangeByte
+<P><STRONG><a name="[51]"></a>SPI2_Init</STRONG> (Thumb, 100 bytes, Stack size 32 bytes, spi.o(i.SPI2_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = SPI2_Init &rArr; gpio_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SetTRMode
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SendPacket
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_nss_internal_high
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_init
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_enable
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskCore
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
 </UL>
 
-<P><STRONG><a name="[4e]"></a>SPI_ExchangeByte</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, spi.o(i.SPI_ExchangeByte))
+<P><STRONG><a name="[48]"></a>SPI_ExchangeByte</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, spi.o(i.SPI_ExchangeByte))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPI_ExchangeByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_i2s_flag_get
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_i2s_data_transmit
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_i2s_data_receive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
+<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteReg
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteMultiReg
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101WriteCmd
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadStatus
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
 </UL>
 
 <P><STRONG><a name="[37]"></a>SystemInit</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, system_gd32f10x.o(i.SystemInit))
@@ -467,183 +459,185 @@ Global Symbols
 <P><STRONG><a name="[23]"></a>TIMER0_UP_IRQHandler</STRONG> (Thumb, 400 bytes, Stack size 8 bytes, hardware.o(i.TIMER0_UP_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TIMER0_UP_IRQHandler &rArr; gd_eval_key_state_get
 </UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_interrupt_flag_get
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_interrupt_flag_clear
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_input_polarity_config
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_counter_value_config
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_capture_value_register_read
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_interrupt_flag_clear
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_input_polarity_config
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_counter_value_config
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_capture_value_register_read
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f10x_md.o(RESET)
 </UL>
 <P><STRONG><a name="[27]"></a>TIMER2_IRQHandler</STRONG> (Thumb, 330 bytes, Stack size 8 bytes, hardware.o(i.TIMER2_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = TIMER2_IRQHandler &rArr; xQueueGenericSendFromISR &rArr; prvCopyDataToQueue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_interrupt_flag_get
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_interrupt_flag_clear
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_interrupt_flag_clear
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f10x_md.o(RESET)
 </UL>
 <P><STRONG><a name="[5]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[66]"></a>__0printf$bare</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, printfb.o(i.__0printf$bare), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[67]"></a>__0printf$bare</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, printfb.o(i.__0printf$bare), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[c6]"></a>__1printf$bare</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, printfb.o(i.__0printf$bare), UNUSED)
+<P><STRONG><a name="[c3]"></a>__1printf$bare</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, printfb.o(i.__0printf$bare), UNUSED)
 
-<P><STRONG><a name="[7c]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, printfb.o(i.__0printf$bare))
+<P><STRONG><a name="[7b]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, printfb.o(i.__0printf$bare))
 <BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskAttack
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskCore
 </UL>
 
-<P><STRONG><a name="[c7]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[c4]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[c8]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[c5]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[c9]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[c6]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[68]"></a>exti_config</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, hardware.o(i.exti_config))
+<P><STRONG><a name="[69]"></a>exti_config</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, hardware.o(i.exti_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = exti_config &rArr; gd_eval_key_init &rArr; nvic_irq_enable
 </UL>
-<BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[76]"></a>exti_init</STRONG> (Thumb, 178 bytes, Stack size 8 bytes, gd32f10x_exti.o(i.exti_init))
+<P><STRONG><a name="[75]"></a>exti_init</STRONG> (Thumb, 178 bytes, Stack size 8 bytes, gd32f10x_exti.o(i.exti_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = exti_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
 </UL>
 
-<P><STRONG><a name="[59]"></a>exti_interrupt_flag_clear</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32f10x_exti.o(i.exti_interrupt_flag_clear))
-<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<P><STRONG><a name="[56]"></a>exti_interrupt_flag_clear</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32f10x_exti.o(i.exti_interrupt_flag_clear))
+<BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
 <LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[57]"></a>exti_interrupt_flag_get</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, gd32f10x_exti.o(i.exti_interrupt_flag_get))
+<P><STRONG><a name="[54]"></a>exti_interrupt_flag_get</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, gd32f10x_exti.o(i.exti_interrupt_flag_get))
 <BR><BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_IRQHandler
 </UL>
 
 <P><STRONG><a name="[3d]"></a>fputc</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, main.o(i.fputc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = fputc &rArr; usart_flag_get
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_flag_get
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_data_transmit
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_flag_get
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_data_transmit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfb.o(i.__0printf$bare)
 </UL>
-<P><STRONG><a name="[6c]"></a>gd_eval_com_init</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, gd32f10x_eval.o(i.gd_eval_com_init))
+<P><STRONG><a name="[6d]"></a>gd_eval_com_init</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, gd32f10x_eval.o(i.gd_eval_com_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = gd_eval_com_init &rArr; usart_baudrate_set &rArr; rcu_clock_freq_get
 </UL>
-<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_transmit_config
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_receive_config
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_enable
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_baudrate_set
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_transmit_config
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_receive_config
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_enable
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_baudrate_set
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[69]"></a>gd_eval_key_init</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, gd32f10x_eval.o(i.gd_eval_key_init))
+<P><STRONG><a name="[6a]"></a>gd_eval_key_init</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, gd32f10x_eval.o(i.gd_eval_key_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = gd_eval_key_init &rArr; nvic_irq_enable
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_irq_enable
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_exti_source_select
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_interrupt_flag_clear
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_init
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_irq_enable
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_exti_source_select
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_interrupt_flag_clear
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_config
+<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_config
 </UL>
 
-<P><STRONG><a name="[54]"></a>gd_eval_key_state_get</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, gd32f10x_eval.o(i.gd_eval_key_state_get))
+<P><STRONG><a name="[61]"></a>gd_eval_key_state_get</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, gd32f10x_eval.o(i.gd_eval_key_state_get))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = gd_eval_key_state_get
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_input_bit_get
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_input_bit_get
 </UL>
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskAttack
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2_IRQHandler
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_UP_IRQHandler
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101SendPacket
 </UL>
 
-<P><STRONG><a name="[56]"></a>gpio_bit_reset</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_gpio.o(i.gpio_bit_reset))
-<BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
+<P><STRONG><a name="[53]"></a>gpio_bit_reset</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_gpio.o(i.gpio_bit_reset))
+<BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_LOW
 </UL>
 
-<P><STRONG><a name="[55]"></a>gpio_bit_set</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_gpio.o(i.gpio_bit_set))
-<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
+<P><STRONG><a name="[52]"></a>gpio_bit_set</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_gpio.o(i.gpio_bit_set))
+<BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC_CSN_HIGH
 </UL>
 
-<P><STRONG><a name="[78]"></a>gpio_config</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, hardware.o(i.gpio_config))
+<P><STRONG><a name="[77]"></a>gpio_config</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, hardware.o(i.gpio_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = gpio_config &rArr; gpio_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[75]"></a>gpio_exti_source_select</STRONG> (Thumb, 146 bytes, Stack size 8 bytes, gd32f10x_gpio.o(i.gpio_exti_source_select))
+<P><STRONG><a name="[74]"></a>gpio_exti_source_select</STRONG> (Thumb, 146 bytes, Stack size 8 bytes, gd32f10x_gpio.o(i.gpio_exti_source_select))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = gpio_exti_source_select
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
 </UL>
 
-<P><STRONG><a name="[6e]"></a>gpio_init</STRONG> (Thumb, 148 bytes, Stack size 20 bytes, gd32f10x_gpio.o(i.gpio_init))
+<P><STRONG><a name="[58]"></a>gpio_init</STRONG> (Thumb, 148 bytes, Stack size 20 bytes, gd32f10x_gpio.o(i.gpio_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = gpio_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_Init
 </UL>
 
-<P><STRONG><a name="[77]"></a>gpio_input_bit_get</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f10x_gpio.o(i.gpio_input_bit_get))
-<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
+<P><STRONG><a name="[76]"></a>gpio_input_bit_get</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f10x_gpio.o(i.gpio_input_bit_get))
+<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
 </UL>
 
-<P><STRONG><a name="[36]"></a>main</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[36]"></a>main</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = main &rArr; vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_config
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_configuration
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_config
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppTaskCreate
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_config
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_configuration
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exti_config
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101_Init
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppTaskCreate
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CoreInit
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[7a]"></a>nvic_configuration</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, hardware.o(i.nvic_configuration))
+<P><STRONG><a name="[79]"></a>nvic_configuration</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, hardware.o(i.nvic_configuration))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = nvic_configuration &rArr; nvic_irq_enable
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_priority_group_set
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_irq_enable
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_irq_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[74]"></a>nvic_irq_enable</STRONG> (Thumb, 156 bytes, Stack size 20 bytes, gd32f10x_misc.o(i.nvic_irq_enable))
+<P><STRONG><a name="[73]"></a>nvic_irq_enable</STRONG> (Thumb, 156 bytes, Stack size 20 bytes, gd32f10x_misc.o(i.nvic_irq_enable))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = nvic_irq_enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_configuration
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_configuration
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
 </UL>
 
 <P><STRONG><a name="[7e]"></a>nvic_priority_group_set</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_misc.o(i.nvic_priority_group_set))
-<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_configuration
+<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_configuration
 </UL>
 
 <P><STRONG><a name="[99]"></a>pvPortMalloc</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, heap_2.o(i.pvPortMalloc))
@@ -653,7 +647,7 @@ Global Symbols
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspendAll
 </UL>
-<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericCreate
 </UL>
 
@@ -664,52 +658,65 @@ Global Symbols
 <P><STRONG><a name="[a9]"></a>rcu_clock_freq_get</STRONG> (Thumb, 264 bytes, Stack size 80 bytes, gd32f10x_rcu.o(i.rcu_clock_freq_get))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = rcu_clock_freq_get
 </UL>
-<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_baudrate_set
+<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_baudrate_set
 </UL>
 
-<P><STRONG><a name="[79]"></a>rcu_config</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, hardware.o(i.rcu_config))
+<P><STRONG><a name="[78]"></a>rcu_config</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, hardware.o(i.rcu_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = rcu_config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6d]"></a>rcu_periph_clock_enable</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32f10x_rcu.o(i.rcu_periph_clock_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_config
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<P><STRONG><a name="[57]"></a>rcu_periph_clock_enable</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32f10x_rcu.o(i.rcu_periph_clock_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_config
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_init
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_Init
 </UL>
 
 <P><STRONG><a name="[a7]"></a>rcu_periph_reset_disable</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32f10x_rcu.o(i.rcu_periph_reset_disable))
-<BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
+<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_deinit
 </UL>
 
 <P><STRONG><a name="[a6]"></a>rcu_periph_reset_enable</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32f10x_rcu.o(i.rcu_periph_reset_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
+<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_deinit
 </UL>
 
+<P><STRONG><a name="[5b]"></a>spi_enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_spi.o(i.spi_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_Init
+</UL>
+
 <P><STRONG><a name="[5e]"></a>spi_i2s_data_receive</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f10x_spi.o(i.spi_i2s_data_receive))
-<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
 </UL>
 
 <P><STRONG><a name="[5c]"></a>spi_i2s_data_transmit</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_spi.o(i.spi_i2s_data_transmit))
-<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
 </UL>
 
 <P><STRONG><a name="[5d]"></a>spi_i2s_flag_get</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f10x_spi.o(i.spi_i2s_flag_get))
-<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+<BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_ExchangeByte
+</UL>
+
+<P><STRONG><a name="[59]"></a>spi_init</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, gd32f10x_spi.o(i.spi_init))
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_Init
+</UL>
+
+<P><STRONG><a name="[5a]"></a>spi_nss_internal_high</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_spi.o(i.spi_nss_internal_high))
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_Init
 </UL>
 
 <P><STRONG><a name="[a1]"></a>timer_auto_reload_shadow_enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_auto_reload_shadow_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
-<P><STRONG><a name="[63]"></a>timer_channel_capture_value_register_read</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_channel_capture_value_register_read))
+<P><STRONG><a name="[64]"></a>timer_channel_capture_value_register_read</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_channel_capture_value_register_read))
 <BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_UP_IRQHandler
 </UL>
 
@@ -720,30 +727,30 @@ Global Symbols
 <P><STRONG><a name="[9e]"></a>timer_channel_output_config</STRONG> (Thumb, 484 bytes, Stack size 8 bytes, gd32f10x_timer.o(i.timer_channel_output_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = timer_channel_output_config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
 <P><STRONG><a name="[9f]"></a>timer_channel_output_mode_config</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_channel_output_mode_config))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
-<P><STRONG><a name="[58]"></a>timer_channel_output_pulse_value_config</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_channel_output_pulse_value_config))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<P><STRONG><a name="[55]"></a>timer_channel_output_pulse_value_config</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_channel_output_pulse_value_config))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskInfrared
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskAttack
 <LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_IRQHandler
 </UL>
 
 <P><STRONG><a name="[a0]"></a>timer_channel_output_shadow_config</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_channel_output_shadow_config))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
-<P><STRONG><a name="[7b]"></a>timer_config</STRONG> (Thumb, 476 bytes, Stack size 48 bytes, hardware.o(i.timer_config))
+<P><STRONG><a name="[7a]"></a>timer_config</STRONG> (Thumb, 476 bytes, Stack size 48 bytes, hardware.o(i.timer_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = timer_config &rArr; timer_input_capture_config
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_enable
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_interrupt_enable
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_input_capture_config
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_init
@@ -757,7 +764,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[62]"></a>timer_counter_value_config</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_counter_value_config))
+<P><STRONG><a name="[63]"></a>timer_counter_value_config</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_counter_value_config))
 <BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_UP_IRQHandler
 </UL>
 
@@ -767,20 +774,20 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_enable
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_disable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
 <P><STRONG><a name="[a4]"></a>timer_disable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_disable))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
 <P><STRONG><a name="[a3]"></a>timer_enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskAttack
 </UL>
 
 <P><STRONG><a name="[9d]"></a>timer_init</STRONG> (Thumb, 158 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_init))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
 <P><STRONG><a name="[a5]"></a>timer_input_capture_config</STRONG> (Thumb, 326 bytes, Stack size 16 bytes, gd32f10x_timer.o(i.timer_input_capture_config))
@@ -788,18 +795,18 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_input_capture_prescaler_config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
-<P><STRONG><a name="[61]"></a>timer_input_polarity_config</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_input_polarity_config))
+<P><STRONG><a name="[62]"></a>timer_input_polarity_config</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_input_polarity_config))
 <BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_UP_IRQHandler
 </UL>
 
 <P><STRONG><a name="[a2]"></a>timer_interrupt_enable</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_interrupt_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_config
 </UL>
 
-<P><STRONG><a name="[64]"></a>timer_interrupt_flag_clear</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_interrupt_flag_clear))
+<P><STRONG><a name="[65]"></a>timer_interrupt_flag_clear</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f10x_timer.o(i.timer_interrupt_flag_clear))
 <BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2_IRQHandler
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_UP_IRQHandler
 </UL>
@@ -809,43 +816,43 @@ Global Symbols
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_UP_IRQHandler
 </UL>
 
-<P><STRONG><a name="[70]"></a>usart_baudrate_set</STRONG> (Thumb, 136 bytes, Stack size 32 bytes, gd32f10x_usart.o(i.usart_baudrate_set))
+<P><STRONG><a name="[6f]"></a>usart_baudrate_set</STRONG> (Thumb, 136 bytes, Stack size 32 bytes, gd32f10x_usart.o(i.usart_baudrate_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = usart_baudrate_set &rArr; rcu_clock_freq_get
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_clock_freq_get
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
 </UL>
 
-<P><STRONG><a name="[6a]"></a>usart_data_transmit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_data_transmit))
+<P><STRONG><a name="[6b]"></a>usart_data_transmit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_data_transmit))
 <BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
 
-<P><STRONG><a name="[6f]"></a>usart_deinit</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, gd32f10x_usart.o(i.usart_deinit))
+<P><STRONG><a name="[6e]"></a>usart_deinit</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, gd32f10x_usart.o(i.usart_deinit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usart_deinit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_enable
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_disable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
 </UL>
 
-<P><STRONG><a name="[73]"></a>usart_enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<P><STRONG><a name="[72]"></a>usart_enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
 </UL>
 
-<P><STRONG><a name="[6b]"></a>usart_flag_get</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32f10x_usart.o(i.usart_flag_get))
+<P><STRONG><a name="[6c]"></a>usart_flag_get</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32f10x_usart.o(i.usart_flag_get))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usart_flag_get
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
 
-<P><STRONG><a name="[71]"></a>usart_receive_config</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_receive_config))
-<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<P><STRONG><a name="[70]"></a>usart_receive_config</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_receive_config))
+<BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
 </UL>
 
-<P><STRONG><a name="[72]"></a>usart_transmit_config</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_transmit_config))
-<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
+<P><STRONG><a name="[71]"></a>usart_transmit_config</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f10x_usart.o(i.usart_transmit_config))
+<BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_com_init
 </UL>
 
 <P><STRONG><a name="[80]"></a>uxListRemove</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, list.o(i.uxListRemove))
@@ -910,7 +917,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspendAll
 </UL>
-<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvDeleteTCB
 </UL>
 
@@ -922,14 +929,14 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = vTaskAttack &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_enable
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd_eval_key_state_get
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.AppTaskCreate)
 </UL>
-<P><STRONG><a name="[3b]"></a>vTaskBeAttack</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, infrared.o(i.vTaskBeAttack))
+<P><STRONG><a name="[3b]"></a>vTaskBeAttack</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, infrared.o(i.vTaskBeAttack))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = vTaskBeAttack &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
@@ -940,12 +947,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.AppTaskCreate)
 </UL>
-<P><STRONG><a name="[3c]"></a>vTaskCore</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, coretask.o(i.vTaskCore))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = vTaskCore &rArr; RF_SendPacket &rArr; CC1101SendPacket &rArr; CC1101WriteMultiReg &rArr; SPI_ExchangeByte
+<P><STRONG><a name="[3c]"></a>vTaskCore</STRONG> (Thumb, 130 bytes, Stack size 0 bytes, coretask.o(i.vTaskCore))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = vTaskCore &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RF_SendPacket
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.AppTaskCreate)
 </UL>
@@ -962,12 +968,12 @@ Global Symbols
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskCore
 </UL>
 
-<P><STRONG><a name="[3a]"></a>vTaskInfrared</STRONG> (Thumb, 250 bytes, Stack size 8 bytes, main.o(i.vTaskInfrared))
+<P><STRONG><a name="[3a]"></a>vTaskInfrared</STRONG> (Thumb, 248 bytes, Stack size 8 bytes, main.o(i.vTaskInfrared))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = vTaskInfrared &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericCreate
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_channel_output_pulse_value_config
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.AppTaskCreate)
@@ -993,7 +999,7 @@ Global Symbols
 <P><STRONG><a name="[7d]"></a>vTaskStartScheduler</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, tasks.o(i.vTaskStartScheduler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xPortStartScheduler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1065,7 +1071,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseNewQueue
 </UL>
 
-<P><STRONG><a name="[65]"></a>xQueueGenericSendFromISR</STRONG> (Thumb, 134 bytes, Stack size 40 bytes, queue.o(i.xQueueGenericSendFromISR))
+<P><STRONG><a name="[66]"></a>xQueueGenericSendFromISR</STRONG> (Thumb, 134 bytes, Stack size 40 bytes, queue.o(i.xQueueGenericSendFromISR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = xQueueGenericSendFromISR &rArr; prvCopyDataToQueue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskRemoveFromEventList
@@ -1084,7 +1090,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
 </UL>
 
-<P><STRONG><a name="[48]"></a>xTaskCreate</STRONG> (Thumb, 96 bytes, Stack size 72 bytes, tasks.o(i.xTaskCreate))
+<P><STRONG><a name="[45]"></a>xTaskCreate</STRONG> (Thumb, 96 bytes, Stack size 72 bytes, tasks.o(i.xTaskCreate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseNewTask
@@ -1093,7 +1099,7 @@ Global Symbols
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pvPortMalloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppTaskCreate
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppTaskCreate
 </UL>
 
 <P><STRONG><a name="[b3]"></a>xTaskIncrementTick</STRONG> (Thumb, 238 bytes, Stack size 24 bytes, tasks.o(i.xTaskIncrementTick))
@@ -1114,7 +1120,7 @@ Global Symbols
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReset
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvUnlockQueue
 </UL>
@@ -1139,10 +1145,10 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[47]"></a>AppTaskCreate</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, main.o(i.AppTaskCreate))
+<P><STRONG><a name="[44]"></a>AppTaskCreate</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, main.o(i.AppTaskCreate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = AppTaskCreate &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1172,7 +1178,7 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 </UL>
 
 <P><STRONG><a name="[8f]"></a>prvInitialiseNewQueue</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, queue.o(i.prvInitialiseNewQueue))
@@ -1222,7 +1228,7 @@ Local Symbols
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseTaskLists
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 </UL>
 
 <P><STRONG><a name="[87]"></a>prvCheckTasksWaitingTermination</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, tasks.o(i.prvCheckTasksWaitingTermination))
@@ -1259,7 +1265,7 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pxPortInitialiseStack
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInitialiseItem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 </UL>
 
 <P><STRONG><a name="[85]"></a>prvInitialiseTaskLists</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, tasks.o(i.prvInitialiseTaskLists))
@@ -1282,8 +1288,8 @@ Local Symbols
 <P><STRONG><a name="[3e]"></a>prvTaskExitError</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, port.o(i.prvTaskExitError))
 <BR>[Address Reference Count : 1]<UL><LI> port.o(i.pxPortInitialiseStack)
 </UL>
-<P><STRONG><a name="[67]"></a>_printf_core</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printfb.o(i._printf_core), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$bare
+<P><STRONG><a name="[68]"></a>_printf_core</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printfb.o(i._printf_core), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$bare
 </UL>
 <P>
 <H3>
