@@ -2,7 +2,7 @@
 #define __INFRARED_H
 #include "core_include.h"
 
-#define INFRA_RECV_BUFF_SIZE 40
+#define INFRA_RECV_BUFF_SIZE 100
 typedef struct{
 		u32 data_array;
 		u32 prev_data_array;

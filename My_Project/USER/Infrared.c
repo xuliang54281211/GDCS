@@ -8,7 +8,7 @@ extern u8 InfraLen;
 extern u32 Infra_recvbuf[INFRA_RECV_BUFF_SIZE];
 extern u8 GameOver;
 static IRA_data_t IRA;
-
+extern xQueueHandle xQueueCoreMsg;
 void IRA_Init(void)
 {
 	u8 i;
@@ -50,7 +50,8 @@ void IRA_DecodeHandler(u32 pulse_width)
 				}
 				else
 				{
-					
+					IRA.head = 0;
+					IRA.data_array = 0;
 				}
 			}
 			else if((IRA.low_cnt > 450)&& (IRA.low_cnt < 750))
@@ -80,6 +81,11 @@ void IRA_DecodeHandler(u32 pulse_width)
 				IRA.data_no++;
 				if(IRA.low_cnt > IRA.high_cnt + 20000)
 					IRA.head = 0;
+			}
+			else
+			{
+				IRA.head = 0;
+				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
 			}
 		}
 //		if(IRA.data_no >= 31)
@@ -136,7 +142,9 @@ u8 Remote_Scan(void)
 void vTaskBeAttack(void *pvParameters)
 {
 	u32 uid, gun;
+	u8 i = 0;
 	u8 len;
+	attacker_info_t atk_info;
 	IRA_Init();
 	while(1)
 	{
@@ -151,6 +159,19 @@ void vTaskBeAttack(void *pvParameters)
 			IRA_DecodeHandler(Infra_recvbuf[IRA.dec_len]);
 			if(IRA.data_array & 0x80000000)//收到一个数据
 			{
+//				atk_info.UID = IRA.data_array & 0xffff;
+//				atk_info.Gun = (IRA.data_array >> 16) & 0xff;
+//				batk_array[i].UID = atk_info.UID;
+//				batk_array[i].Gun = atk_info.Gun;
+//				if(i >= MAX_MESSAGE)
+//				{
+//					i = 0;
+//				}
+//				printf("send msg to core\r\n");
+//				if(xQueueCoreMsg!= NULL)
+//				{
+//					xQueueSend(xQueueCoreMsg,&batk_array[i++],0);
+//				}
 				end->UID = IRA.data_array & 0xffff;
 				end->Gun = (IRA.data_array >> 16) & 0xff;
 				end++;
@@ -171,7 +192,7 @@ void vTaskBeAttack(void *pvParameters)
 		}
 
 		//printf("I'm Task55555555\r\n");
-		vTaskDelay(10);
+		vTaskDelay(1);
 	
 	}
 }

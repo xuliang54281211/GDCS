@@ -197,10 +197,16 @@ void TIMER2_IRQHandler(void)
 			if(timer2_modulate)
 			{
 				ctl_flag++;
-				if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1516 ||ctl_flag == 1412 || ctl_flag == 1801))
+				if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1516 ||ctl_flag == 1412 || ctl_flag >= 1801))
 				{
 					i = ctl_flag;
 					xQueueSendToBackFromISR(xQueueInfraredMsg, &i, 0);
+					if(ctl_flag >= 1801)
+					{
+						timer2_modulate = 0;
+						ctl_flag = 0;
+						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
+					}
 //					if(ctl_flag >= 1516 && !end_one && !end_zero)
 //					{
 //						ctl_flag = 1301;
@@ -571,8 +577,8 @@ u8 RF_SendPacket(u8 *Sendbuffer, u8 length)
     u8 error = 0, i=0, ack_len=0, ack_buffer[65]={ 0 }, TxBuffer[100];
 
     CC1101SendPacket(Sendbuffer, length, ADDRESS_CHECK);    // ????   
-    CC1101SetTRMode(RX_MODE);           // ??????,????
-    RecvWaitTime = RECV_TIMEOUT;        // ?????????800ms
+    //CC1101SetTRMode(RX_MODE);           // ??????,????
+    //RecvWaitTime = RECV_TIMEOUT;        // ?????????800ms
     
     ack_flag = 1;
     

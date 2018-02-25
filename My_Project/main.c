@@ -14,7 +14,7 @@
 #include "gd32f10x_eval.h"
 #include "core_include.h"
 #include "hardware.h"
-#define ATTACK_FRE 980
+#define ATTACK_FRE 480
 /**********全局变量************/
 
 u8	GameBegin;
@@ -56,14 +56,17 @@ void vTaskAttack(void *pvParameters)
 		{
 			if(gd_eval_key_state_get(KEYIN_IO) == RESET)
 			{
+				vTaskDelay(20/portTICK_RATE_MS);
+				if(gd_eval_key_state_get(KEYIN_IO) == RESET)
+				{
 				//audio_bit = 0;
 			timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);//38Khz载波
 			timer2_modulate = 1;
 			/*timer_enable(TIMER2)*/;//开启红外调制
 			timer_enable(TIMER3);//60KHz音频载波
 			timer_enable(TIMER0);//11.025kHz调制
-			printf("I'm Task222\r\n");
 			vTaskDelay(ATTACK_FRE/portTICK_RATE_MS);
+				}
 			}
 		}
 		vTaskDelay(1);
@@ -78,10 +81,13 @@ void vTaskAudio(void *pvParameters)
 
 extern u32 ctl_flag;
 u8 end_zero, end_one;
+u32 sendbuf[20] = {0};
 void vTaskInfrared(void *pvParameters)
 {
+	u32 sendbufi = 0;
+	u32 j = 0;
 	u32 count = 300;
-	u8 i = 24;
+	u8 codei = 32;
 	u8 bit_count = 0;
 	u32 uid_temp = TESTUID;
 	xQueueInfraredMsg = xQueueCreate(1, sizeof(u32));
@@ -89,6 +95,7 @@ void vTaskInfrared(void *pvParameters)
 	{
 		if(xQueueReceive(xQueueInfraredMsg, &count, 0) == pdPASS)
 		{
+			//taskENTER_CRITICAL();
 			if(count == 900)//9ms高电平
 			{
 				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
@@ -97,9 +104,9 @@ void vTaskInfrared(void *pvParameters)
 			{
 				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);
 			}
-			if(i != 0)
+			if(codei != 0)
 			{
-				if((uid_temp >> (i-1)) & 0x01)
+				if((uid_temp >> (codei-1)) & 0x01)
 				{
 					if(count == 1356)
 					{
@@ -108,8 +115,11 @@ void vTaskInfrared(void *pvParameters)
 					if(count == 1516)
 					{
 						ctl_flag = 1301;
-						i--;
+						codei--;
 						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);
+						sendbuf[sendbufi] <<= 1;
+						sendbuf[sendbufi] |= 0x01;
+						j++;
 					}
 				}
 				else
@@ -121,8 +131,10 @@ void vTaskInfrared(void *pvParameters)
 					if(count == 1412)
 					{
 						ctl_flag = 1301;
-						i--;
+						codei--;
 						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);
+						sendbuf[sendbufi] <<= 1;
+						j++;
 					}
 				}
 			}
@@ -130,23 +142,32 @@ void vTaskInfrared(void *pvParameters)
 			{
 				if(count >= 1801)
 				{
-					i = 24;
-					timer2_modulate = 0;
-					ctl_flag = 0;
-					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
+					sendbufi++;
+					if(sendbufi >= 20)
+					{
+						sendbufi = 0;
+					}
+					j = 0;
+					codei = 32;
+					uid_temp = TESTUID;
+//					timer2_modulate = 0;
+//					//ctl_flag = 0;
+//					
+//					timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
 				}
 			}
+		//taskEXIT_CRITICAL();
 		}
-	vTaskDelay(1);
+		vTaskDelay(1);
 	}
 }
 
 static void AppTaskCreate (void)
 {
-    xTaskCreate( vTaskAttack, "vTaskAttack", 64,NULL,5,NULL);
-    xTaskCreate( vTaskInfrared,"infrared",64,NULL,2, NULL);
-		xTaskCreate( vTaskBeAttack,"vTaskBeAttack",64,NULL,4, NULL);
-		xTaskCreate( vTaskCore,"vTaskCore",64,NULL,3, NULL);
+    xTaskCreate( vTaskAttack, "vTaskAttack", 64,NULL,6,NULL);
+    xTaskCreate( vTaskInfrared,"infrared",64,NULL,5, NULL);
+		xTaskCreate( vTaskBeAttack,"vTaskBeAttack",64,NULL,3, NULL);
+		xTaskCreate( vTaskCore,"vTaskCore",64,NULL,4, NULL);
 }
 /*!
     \brief      main function

@@ -1,7 +1,7 @@
 .\output\port.o: ..\..\FreeRTOS\Source\portable\RVDS\ARM_CM3\port.c
 .\output\port.o: ..\..\FreeRTOS\Source\include\FreeRTOS.h
-.\output\port.o: G:\MDK\ARM\ARMCC\Bin\..\include\stddef.h
-.\output\port.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\port.o: ..\..\FreeRTOS\FreeRTOSConfig.h
 .\output\port.o: ..\..\FreeRTOS\Source\include\projdefs.h
 .\output\port.o: ..\..\FreeRTOS\Source\include\portable.h
