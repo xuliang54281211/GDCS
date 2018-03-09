@@ -64,7 +64,7 @@ void IRA_DecodeHandler(u32 pulse_width)
 				else
 					IRA.data_array = 0;
 			}
-			else if(IRA.head && (((IRA.low_cnt > 45) &&(IRA.low_cnt <75))  && (IRA.high_cnt > 45 && IRA.high_cnt < 75)))
+			else if(IRA.head && (((IRA.low_cnt > 40) &&(IRA.low_cnt <80))  && (IRA.high_cnt > 40 && IRA.high_cnt < 80)))
 			{
 				//get 0 bit
 				IRA.data_array <<= 1;
@@ -73,7 +73,7 @@ void IRA_DecodeHandler(u32 pulse_width)
 					IRA.head = 0;
 				
 			}
-			else if(IRA.head && (((IRA.low_cnt > 45) &&(IRA.low_cnt <75))  && (IRA.high_cnt > 130 && IRA.high_cnt < 210)))
+			else if(IRA.head && (((IRA.low_cnt > 40) &&(IRA.low_cnt <80))  && (IRA.high_cnt > 100 && IRA.high_cnt < 250)))
 			{
 				//get 1 bit
 				IRA.data_array <<= 1;
