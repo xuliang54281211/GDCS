@@ -7,7 +7,7 @@ u32 ctl_flag;
 u32 i;
 u32 audio_bit;
 u32 IRAHighCnt, IRALowCnt;
-u8 timer2_modulate, InfraLen;
+u8 timer2_modulate, InfraLen, rfid_flag;
 u32 Infra_recvbuf[INFRA_RECV_BUFF_SIZE];
 extern xQueueHandle xQueueInfraredMsg;
 /*!
@@ -49,7 +49,7 @@ void systick_config(void)
 void nvic_configuration(void)
 {
     nvic_priority_group_set(NVIC_PRIGROUP_PRE1_SUB3);
-    nvic_irq_enable(TIMER2_IRQn, 1, 1);
+    nvic_irq_enable(TIMER3_IRQn, 1, 1);
 		nvic_priority_group_set(NVIC_PRIGROUP_PRE1_SUB3);
     nvic_irq_enable(TIMER0_UP_IRQn, 1, 2);
     //nvic_irq_enable(SPI0_IRQn,1,1);
@@ -109,7 +109,7 @@ void timer_config(void)
     timer_channel_output_config(TIMER1,TIMER_CH_1,&timer_ocintpara);
 
     /* CH1 configuration in PWM mode1,duty cycle 25% */
-    timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
+    timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,100);
     timer_channel_output_mode_config(TIMER1,TIMER_CH_1,TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1,TIMER_CH_1,TIMER_OC_SHADOW_DISABLE);
 
@@ -126,22 +126,22 @@ void timer_config(void)
     timer_initpara.period            = 9;
     timer_initpara.clockdivision     = TIMER_CKDIV_DIV1;
     timer_initpara.repetitioncounter = 0;
-    timer_init(TIMER2,&timer_initpara);
+    timer_init(TIMER3,&timer_initpara);
 		
-    timer_auto_reload_shadow_enable(TIMER2);
-		timer_interrupt_enable(TIMER2,TIMER_INT_FLAG_UP);
+    timer_auto_reload_shadow_enable(TIMER3);
+		timer_interrupt_enable(TIMER3,TIMER_INT_FLAG_UP);
 
     /* auto-reload preload enable */
-    timer_enable(TIMER2);
+    timer_enable(TIMER3);
 		
-		    /* TIMER3 configuration */
-    timer_initpara.prescaler         = 6;
+		    /* TIMER3 configuration */ //RFID
+    timer_initpara.prescaler         = 107;
     timer_initpara.alignedmode       = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection  = TIMER_COUNTER_UP;
-    timer_initpara.period            = 254;
+    timer_initpara.period            = 7;
     timer_initpara.clockdivision     = TIMER_CKDIV_DIV1;
     timer_initpara.repetitioncounter = 0;
-    timer_init(TIMER3,&timer_initpara);
+    timer_init(TIMER2,&timer_initpara);
 
     /* CH1,CH2 and CH3 configuration in PWM mode1 */
     timer_ocintpara.ocpolarity   = TIMER_OC_POLARITY_HIGH;
@@ -151,18 +151,18 @@ void timer_config(void)
     timer_ocintpara.ocidlestate  = TIMER_OC_IDLE_STATE_LOW;
     timer_ocintpara.ocnidlestate = TIMER_OCN_IDLE_STATE_LOW;
 
-    timer_channel_output_config(TIMER3,TIMER_CH_1,&timer_ocintpara);
+    timer_channel_output_config(TIMER2,TIMER_CH_2,&timer_ocintpara);
 
     /* CH1 configuration in PWM mode1,duty cycle 25% */
-    timer_channel_output_pulse_value_config(TIMER3,TIMER_CH_1,0);
-    timer_channel_output_mode_config(TIMER3,TIMER_CH_1,TIMER_OC_MODE_PWM0);
-    timer_channel_output_shadow_config(TIMER3,TIMER_CH_1,TIMER_OC_SHADOW_DISABLE);
+    timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_2,4);
+    timer_channel_output_mode_config(TIMER2,TIMER_CH_2,TIMER_OC_MODE_PWM0);
+    timer_channel_output_shadow_config(TIMER2,TIMER_CH_2,TIMER_OC_SHADOW_DISABLE);
 
     /* auto-reload preload enable */
-    timer_auto_reload_shadow_enable(TIMER3);
-		  timer_interrupt_enable(TIMER3,TIMER_INT_FLAG_UP);
+    timer_auto_reload_shadow_enable(TIMER2);
+		  timer_interrupt_enable(TIMER2,TIMER_INT_FLAG_UP);
     /* auto-reload preload enable */
-    timer_disable(TIMER3);
+    timer_enable(TIMER2);
 		
 		/* TIMER0 configuration */
     timer_initpara.prescaler         = 10;
@@ -190,64 +190,124 @@ void timer_config(void)
 }
 extern u8 end_one;
 extern u8 end_zero;
-void TIMER2_IRQHandler(void)
+uint8_t Rfid_bits[128];
+uint8_t rfCT;
+uint8_t bRfid;
+uint8_t bRftriger;
+void TIMER3_IRQHandler(void)
 {
-		if (RESET != timer_interrupt_flag_get(TIMER2, TIMER_INT_FLAG_UP))
+		if (RESET != timer_interrupt_flag_get(TIMER3, TIMER_INT_FLAG_UP))
 		{
-			if(timer2_modulate)
+			if(!rfid_flag)
 			{
-				ctl_flag++;
-				if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1516 ||ctl_flag == 1412 || ctl_flag >= 1801))
+				if(gd_eval_key_state_get(RFIDIN_IO))
 				{
-					i = ctl_flag;
-					xQueueSendToBackFromISR(xQueueInfraredMsg, &i, 0);
-					if(ctl_flag >= 1801)
+					if(bRftriger)
 					{
-						timer2_modulate = 0;
-						ctl_flag = 0;
-						timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
+						/*HIGH Level*/
+						if((IRALowCnt >= 15))//一个合格的下降沿---->1
+						{
+							Rfid_bits[rfCT] = 0;
+							if(++rfCT == 0)
+								bRfid = 1;
+							if(IRALowCnt >= 40)
+							{
+								Rfid_bits[rfCT] = 0;
+								if(++rfCT == 0)
+									bRfid = 1;
+							}
+							bRftriger = 0;
+						}
 					}
-//					if(ctl_flag >= 1516 && !end_one && !end_zero)
-//					{
-//						ctl_flag = 1301;
-//					}
+						IRALowCnt = 0;
+						IRAHighCnt++;
+						if(IRAHighCnt >= 32767)
+							IRAHighCnt = 0;
 				}
-			}
-			//TODO_Input Infra signal detect
-			if(gd_eval_key_state_get(IRAIN_IO))
-			{
-				/* High Level */
-				if(IRALowCnt >= 40)
+				else
 				{
-					IRALowCnt &= 0x7fff;
-					Infra_recvbuf[InfraLen++] = IRALowCnt;
-					if(InfraLen >= INFRA_RECV_BUFF_SIZE)
-						InfraLen = 0;
+					/* Low Level */
+					if(!bRftriger)
+					{
+						if((IRAHighCnt >= 15))//一个合格的下降沿---->1
+						{
+							Rfid_bits[rfCT] = 1;
+							if(++rfCT == 0)
+								bRfid = 1;
+							if(IRAHighCnt >= 40)
+							{
+								Rfid_bits[rfCT] = 1;
+								if(++rfCT == 0)
+									bRfid = 1;
+							}
+							bRftriger = 1;
+						}
+					}
+						IRAHighCnt = 0;
+						
+						IRALowCnt++;
+						if(IRALowCnt >= 32767)
+							IRALowCnt = 0;
 				}
-				IRALowCnt = 0;
-				
-				IRAHighCnt++;
-				if(IRAHighCnt >= 32767)
-					IRAHighCnt = 0;
+						
 			}
 			else
 			{
-				/* Low Level */
-				if(IRAHighCnt >= 40)
+				if(timer2_modulate)
 				{
-					IRAHighCnt |= 0x8000;
-					Infra_recvbuf[InfraLen++] = IRAHighCnt;
-					if(InfraLen >= INFRA_RECV_BUFF_SIZE)
-						InfraLen = 0;
+					ctl_flag++;
+					if(xQueueInfraredMsg && (ctl_flag == 900 ||ctl_flag == 1300 ||ctl_flag == 1356 ||ctl_flag == 1516 ||ctl_flag == 1412 || ctl_flag >= 1801))
+					{
+						i = ctl_flag;
+						xQueueSendToBackFromISR(xQueueInfraredMsg, &i, 0);
+						if(ctl_flag >= 1801)
+						{
+							timer2_modulate = 0;
+							ctl_flag = 0;
+							timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,0);
+						}
+	//					if(ctl_flag >= 1516 && !end_one && !end_zero)
+	//					{
+	//						ctl_flag = 1301;
+	//					}
+					}
 				}
-				IRAHighCnt = 0;
-				
-				IRALowCnt++;
-				if(IRALowCnt >= 32767)
+				//TODO_Input Infra signal detect
+				if(gd_eval_key_state_get(IRAIN_IO))
+				{
+					/* High Level */
+					if(IRALowCnt >= 40)
+					{
+						IRALowCnt &= 0x7fff;
+						Infra_recvbuf[InfraLen++] = IRALowCnt;
+						if(InfraLen >= INFRA_RECV_BUFF_SIZE)
+							InfraLen = 0;
+					}
 					IRALowCnt = 0;
-			
+					
+					IRAHighCnt++;
+					if(IRAHighCnt >= 32767)
+						IRAHighCnt = 0;
+				}
+				else
+				{
+					/* Low Level */
+					if(IRAHighCnt >= 40)
+					{
+						IRAHighCnt |= 0x8000;
+						Infra_recvbuf[InfraLen++] = IRAHighCnt;
+						if(InfraLen >= INFRA_RECV_BUFF_SIZE)
+							InfraLen = 0;
+					}
+					IRAHighCnt = 0;
+					
+					IRALowCnt++;
+					if(IRALowCnt >= 32767)
+						IRALowCnt = 0;
+				
+				}
 			}
-			timer_interrupt_flag_clear(TIMER2, TIMER_INT_FLAG_UP);
+			timer_interrupt_flag_clear(TIMER3, TIMER_INT_FLAG_UP);
 		}
 }
 u8 IraSta;	  
@@ -333,9 +393,10 @@ void TIMER0_UP_IRQHandler(void)
 /*******************************************************************************************/
 void gpio_config(void)
 {
-	rcu_periph_clock_enable(RCU_GPIOA);
+	rcu_periph_clock_enable(RCU_GPIOA| RCU_GPIOB);
   rcu_periph_clock_enable(RCU_AF);
 	gpio_init(GPIOA, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_1);
+	gpio_init(GPIOB, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_0);
 	
 	/***CC1101****/
 	rcu_periph_clock_enable(RCU_GPIOB);
@@ -343,7 +404,7 @@ void gpio_config(void)
 	gpio_init(GPIOA, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_2);//GDO0
 	//
 	rcu_periph_clock_enable(RCU_GPIOB);
-	gpio_init(GPIOB, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, GPIO_PIN_6);
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_6);
 	gpio_init(GPIOA, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_8);//KEY_INPUT
 }
 u8 attack_flag;

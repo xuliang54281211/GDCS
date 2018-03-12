@@ -78,5 +78,6 @@ typedef struct
   u8 level;
 }Self_info_t;
 
+
 #endif
 

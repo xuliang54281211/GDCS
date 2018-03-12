@@ -63,7 +63,7 @@ void vTaskAttack(void *pvParameters)
 			timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);//38Khz载波
 			timer2_modulate = 1;
 			/*timer_enable(TIMER2)*/;//开启红外调制
-			timer_enable(TIMER3);//60KHz音频载波
+			//timer_enable(TIMER3);//60KHz音频载波
 			timer_enable(TIMER0);//11.025kHz调制
 			vTaskDelay(ATTACK_FRE/portTICK_RATE_MS);
 				}
@@ -176,6 +176,9 @@ static void AppTaskCreate (void)
     \retval     none
 */
 uint16_t adc_value[4];
+
+extern uint8_t bRfid;
+extern uint8_t Rfid_data[4];
 int main(void)
 {
     /* system clocks configuration */
@@ -192,7 +195,7 @@ int main(void)
     /* TIMER configuration */
     timer_config();
 		
-		CC1101_Init();
+		//CC1101_Init();
 	
 //读取RFID卡(UID)后开始任务
 //	while(!GameBegin)
@@ -206,6 +209,18 @@ int main(void)
 		
 		printf("Begin adc!\r\n");
 		printf("test over!\r\n");
+		/*检测RFID*/
+		while(1)
+		{
+			if(bRfid)
+			{
+				bRfid = 0;
+				if(decode_RFID())
+				{
+					break;
+				}
+			}
+		}
 		//printf("Begin adc!\r\n");
 	//系统信息初始化
 		CoreInit();

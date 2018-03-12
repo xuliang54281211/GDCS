@@ -35,7 +35,8 @@ typedef enum
     KEY_USER = 2,
 		IRQ0_IO = 3,
 		IRAIN_IO = 4,
-		KEYIN_IO = 5
+		KEYIN_IO = 5,
+		RFIDIN_IO = 6
 } key_typedef_enum;
 
 typedef enum 
@@ -79,7 +80,7 @@ typedef enum
 #define EVAL_COM2_GPIO_PORT              GPIOA
 #define EVAL_COM2_GPIO_CLK               RCU_GPIOA
 
-#define KEYn                             6U
+#define KEYn                             7U
 
 /* tamper push-button */
 #define TAMPER_KEY_PIN                   GPIO_PIN_13
@@ -107,6 +108,9 @@ typedef enum
 #define USER_KEY_EXTI_PORT_SOURCE        GPIO_EVENT_PORT_GPIOB
 #define USER_KEY_EXTI_PIN_SOURCE         GPIO_EVENT_PIN_14
 #define USER_KEY_EXTI_IRQn               EXTI10_15_IRQn
+
+#define RFIDIN GPIO_PIN_6
+#define	RFIDIN_PORT GPIOB
 
 #define KEYIN GPIO_PIN_8
 #define	KEYIN_PORT GPIOA
