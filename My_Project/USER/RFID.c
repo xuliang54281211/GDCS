@@ -64,7 +64,7 @@ u8 decode_RFID(void)
         Rfid_data[3] = (data[8] << 4) | data[9];
         for (i = 0; i < 255; i++)
           Rfid_bits[i] = 0;
-        Rfid_bits[i] = 0;
+				Rfid_bits[i] = 0;
         return 1;
 			}
 		}

@@ -1,7 +1,7 @@
 .\output\croutine.o: ..\..\FreeRTOS\Source\croutine.c
 .\output\croutine.o: ..\..\FreeRTOS\Source\include\FreeRTOS.h
-.\output\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\output\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\croutine.o: G:\MDK\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\croutine.o: G:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\croutine.o: ..\..\FreeRTOS\FreeRTOSConfig.h
 .\output\croutine.o: ..\..\FreeRTOS\Source\include\projdefs.h
 .\output\croutine.o: ..\..\FreeRTOS\Source\include\portable.h
