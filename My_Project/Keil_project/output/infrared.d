@@ -53,6 +53,7 @@
 .\output\infrared.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_enet.h
 .\output\infrared.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_misc.h
 .\output\infrared.o: ..\..\Utilities\gd32f10x_eval.h
+.\output\infrared.o: G:\MDK\ARM\ARMCC\Bin\..\include\string.h
 .\output\infrared.o: ..\systick.h
 .\output\infrared.o: ..\timer.h
 .\output\infrared.o: ..\gpio.h

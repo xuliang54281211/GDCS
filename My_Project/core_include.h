@@ -29,7 +29,7 @@
 typedef uint32_t u32;
 typedef uint16_t u16;
 typedef uint8_t u8;
-
+#include <string.h>
 /************hardware************/
 #include "systick.h"
 #include "timer.h"
@@ -41,11 +41,12 @@ typedef uint8_t u8;
 /***********System Struct**********/
 #define MYGUN 1
 #define MAX_MESSAGE 10
-#define TESTUID 0x14003a
+#define TESTUID 0x14123a
 typedef struct
 {
    u32 MY_UID;
 	 u32 ATK_UID;
+	 u32 ATK_GUN;
 	 u8 health;
    u8 id_info;
 }report_info_t;

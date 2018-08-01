@@ -48,24 +48,33 @@ extern u8 timer2_modulate;
 extern u8 attack_flag;
 extern u32 audio_bit;
 extern u8 GameOver;
+u8 SendBUF[] = "Hello my CS!";
 void vTaskAttack(void *pvParameters)
 {
 	while(1)
 	{
 		if(!GameOver)
 		{
+			
 			if(gd_eval_key_state_get(KEYIN_IO) == RESET)
 			{
 				vTaskDelay(20/portTICK_RATE_MS);
 				if(gd_eval_key_state_get(KEYIN_IO) == RESET)
 				{
-				//audio_bit = 0;
+					
+					#if 1
 			timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);//38Khz载波
 			timer2_modulate = 1;
 			/*timer_enable(TIMER2)*/;//开启红外调制
 			//timer_enable(TIMER3);//60KHz音频载波
 			timer_enable(TIMER0);//11.025kHz调制
 			vTaskDelay(ATTACK_FRE/portTICK_RATE_MS);
+					#endif
+					
+//			if (RF_SendPacket(SendBUF, strlen((char *)SendBUF)))
+//			{
+//				LED_OP(1, 0);
+//			}
 				}
 			}
 		}
@@ -80,6 +89,7 @@ void vTaskAudio(void *pvParameters)
 }
 
 extern u32 ctl_flag;
+extern uint32_t MY_UID;
 u8 end_zero, end_one;
 u32 sendbuf[20] = {0};
 void vTaskInfrared(void *pvParameters)
@@ -89,7 +99,7 @@ void vTaskInfrared(void *pvParameters)
 	u32 count = 300;
 	u8 codei = 32;
 	u8 bit_count = 0;
-	u32 uid_temp = TESTUID;
+	u32 uid_temp = (MY_UID << 2) | MYGUN;
 	xQueueInfraredMsg = xQueueCreate(1, sizeof(u32));
 	while(1)
 	{
@@ -103,8 +113,10 @@ void vTaskInfrared(void *pvParameters)
 			if(count == 1300)//4ms低电平
 			{
 				timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,94);
+				LED_OP(1, 1);
 			}
-			if(codei != 0)
+			
+			if(codei != 0) 
 			{
 				if((uid_temp >> (codei-1)) & 0x01)
 				{
@@ -150,6 +162,7 @@ void vTaskInfrared(void *pvParameters)
 					j = 0;
 					codei = 32;
 					uid_temp = TESTUID;
+					
 //					timer2_modulate = 0;
 //					//ctl_flag = 0;
 //					
@@ -166,8 +179,8 @@ static void AppTaskCreate (void)
 {
     xTaskCreate( vTaskAttack, "vTaskAttack", 64,NULL,6,NULL);
     xTaskCreate( vTaskInfrared,"infrared",64,NULL,5, NULL);
-		xTaskCreate( vTaskBeAttack,"vTaskBeAttack",64,NULL,3, NULL);
-		xTaskCreate( vTaskCore,"vTaskCore",64,NULL,4, NULL);
+	xTaskCreate( vTaskBeAttack,"vTaskBeAttack",64,NULL,7, NULL);
+	xTaskCreate( vTaskCore,"vTaskCore",64,NULL,4, NULL);
 }
 /*!
     \brief      main function
@@ -179,6 +192,7 @@ uint16_t adc_value[4];
 
 extern uint8_t bRfid;
 extern uint8_t Rfid_data[4];
+extern uint8_t rfid_flag;
 int main(void)
 {
     /* system clocks configuration */
@@ -194,34 +208,21 @@ int main(void)
 		nvic_configuration();
     /* TIMER configuration */
     timer_config();
-		
+		LED_OP(2, 1);
 		//CC1101_Init();
-	
 //读取RFID卡(UID)后开始任务
 //	while(!GameBegin)
 //	{
-//		if(decoder_RFID())
+//		if(1 == decode_RFID())
 //		{
+//			LED_OP(2, 0 );
+//			LED_OP(1, 1);
+			rfid_flag = 1;
 //			GameBegin = 1;
-//			CoreInit();
 //		}
 //	}
 		
-		printf("Begin adc!\r\n");
-		printf("test over!\r\n");
-		/*检测RFID*/
-		while(1)
-		{
-			if(bRfid)
-			{
-				bRfid = 0;
-				if(decode_RFID())
-				{
-					break;
-				}
-			}
-		}
-		//printf("Begin adc!\r\n");
+
 	//系统信息初始化
 		CoreInit();
 		AppTaskCreate();
@@ -231,6 +232,7 @@ int main(void)
 
  
     while(1);
+
 }
 
 

@@ -5,7 +5,7 @@ report_info_t report_info;
 attacker_info_t my_attacker_info, attacker_info;
 u8 SysInfo[128] = {0};
 u8 GameOver;
-#define MYUID 0x43
+uint32_t MY_UID;
 
 xQueueHandle xQueueCoreMsg;
 extern attacker_info_t batk_array[MAX_MESSAGE];
@@ -20,19 +20,21 @@ void CoreInit(void)
 	
 	//report info
 	report_info.health = Self_info.health;
-	report_info.MY_UID = MYUID;
+	report_info.MY_UID = MY_UID;
 	report_info.ATK_UID = 0;
+	report_info.ATK_GUN = 0;
 	
 	//My Infra send info
-	my_attacker_info.UID  = MYUID;
+	my_attacker_info.UID  = MY_UID;
 	my_attacker_info.Gun = MYGUN;
 	
 	//other attacker info
 	attacker_info.UID = 0;
 	attacker_info.Gun = 0;
+
+	begin = end = batk_array;
 	
 	GameOver = 0;
-	
 }
 
 void org_report(u32 uid, u32 gun)
@@ -72,28 +74,8 @@ void vTaskCore(void *pvParameters)
 	xQueueCoreMsg = xQueueCreate(1, sizeof(u32));
 	while(1)
 	{
-//		if(xQueueReceive(xQueueCoreMsg, &atk_info, portMAX_DELAY ) == pdPASS)
-//		{
-//			if(Self_info.health >= (atk_info.Gun))
-//				Self_info.health -= atk_info.Gun;
-//			else
-//				Self_info.health = 0;
-//			if(0 == Self_info.health)
-//			{
-//				GameOver = 0;//游戏结束 
-//				/*后续动作...*/
-//			}
-//			
-//			//组织report包
-//			report_info.health = Self_info.health;
-//			report_info.MY_UID = MYUID;
-//			report_info.ATK_UID = atk_info.UID;
-//			printf("send report!\r\n");
-//			if (RF_SendPacket((u8 *)&report_info, sizeof(report_info_t)))
-//			{
-//				
-//			}
-//		}
+		//
+		//被击中信息检测
 		while(begin != end)
 		{
 			//扣除生命
@@ -105,14 +87,15 @@ void vTaskCore(void *pvParameters)
 			{
 				GameOver = 1;//游戏结束 
 				/*后续动作...*/
+				//TODO
 			}
 			
 			
 			//组织report包
 			report_info.health = Self_info.health;
-			report_info.MY_UID = MYUID;
+			report_info.MY_UID = MY_UID;
 			report_info.ATK_UID = begin->UID;
-			report_info.ATK_UID = begin->UID;
+			report_info.ATK_GUN = begin->Gun;
 			begin++;
 			if(begin > &batk_array[MAX_MESSAGE])
 			{

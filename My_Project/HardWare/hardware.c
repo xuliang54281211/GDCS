@@ -3,6 +3,8 @@
 #include "spi.h"
 #include "CC1101_REG.h"
 
+#define ON 1
+#define OFF 0
 u32 ctl_flag;
 u32 i;
 u32 audio_bit;
@@ -49,7 +51,7 @@ void systick_config(void)
 void nvic_configuration(void)
 {
     nvic_priority_group_set(NVIC_PRIGROUP_PRE1_SUB3);
-    nvic_irq_enable(TIMER3_IRQn, 1, 1);
+    nvic_irq_enable(TIMER2_IRQn, 1, 1);
 		nvic_priority_group_set(NVIC_PRIGROUP_PRE1_SUB3);
     nvic_irq_enable(TIMER0_UP_IRQn, 1, 2);
     //nvic_irq_enable(SPI0_IRQn,1,1);
@@ -126,22 +128,22 @@ void timer_config(void)
     timer_initpara.period            = 9;
     timer_initpara.clockdivision     = TIMER_CKDIV_DIV1;
     timer_initpara.repetitioncounter = 0;
-    timer_init(TIMER3,&timer_initpara);
+    timer_init(TIMER2,&timer_initpara);
 		
-    timer_auto_reload_shadow_enable(TIMER3);
-		timer_interrupt_enable(TIMER3,TIMER_INT_FLAG_UP);
+    timer_auto_reload_shadow_enable(TIMER2);
+		timer_interrupt_enable(TIMER2,TIMER_INT_FLAG_UP);
 
     /* auto-reload preload enable */
-    timer_enable(TIMER3);
+    timer_enable(TIMER2);
 		
 		    /* TIMER3 configuration */ //RFID
     timer_initpara.prescaler         = 107;
     timer_initpara.alignedmode       = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection  = TIMER_COUNTER_UP;
-    timer_initpara.period            = 7;
+    timer_initpara.period            = 8;
     timer_initpara.clockdivision     = TIMER_CKDIV_DIV1;
     timer_initpara.repetitioncounter = 0;
-    timer_init(TIMER2,&timer_initpara);
+    timer_init(TIMER3,&timer_initpara);
 
     /* CH1,CH2 and CH3 configuration in PWM mode1 */
     timer_ocintpara.ocpolarity   = TIMER_OC_POLARITY_HIGH;
@@ -151,18 +153,18 @@ void timer_config(void)
     timer_ocintpara.ocidlestate  = TIMER_OC_IDLE_STATE_LOW;
     timer_ocintpara.ocnidlestate = TIMER_OCN_IDLE_STATE_LOW;
 
-    timer_channel_output_config(TIMER2,TIMER_CH_2,&timer_ocintpara);
+    timer_channel_output_config(TIMER3,TIMER_CH_0,&timer_ocintpara);
 
     /* CH1 configuration in PWM mode1,duty cycle 25% */
-    timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_2,4);
-    timer_channel_output_mode_config(TIMER2,TIMER_CH_2,TIMER_OC_MODE_PWM0);
-    timer_channel_output_shadow_config(TIMER2,TIMER_CH_2,TIMER_OC_SHADOW_DISABLE);
+    timer_channel_output_pulse_value_config(TIMER3,TIMER_CH_0,4);
+    timer_channel_output_mode_config(TIMER3,TIMER_CH_0,TIMER_OC_MODE_PWM0);
+    timer_channel_output_shadow_config(TIMER3,TIMER_CH_0,TIMER_OC_SHADOW_DISABLE);
 
     /* auto-reload preload enable */
-    timer_auto_reload_shadow_enable(TIMER2);
-		  timer_interrupt_enable(TIMER2,TIMER_INT_FLAG_UP);
+    timer_auto_reload_shadow_enable(TIMER3);
+		  timer_interrupt_enable(TIMER3,TIMER_INT_FLAG_UP);
     /* auto-reload preload enable */
-    timer_enable(TIMER2);
+    timer_enable(TIMER3);
 		
 		/* TIMER0 configuration */
     timer_initpara.prescaler         = 10;
@@ -194,9 +196,9 @@ uint8_t Rfid_bits[128];
 uint8_t rfCT;
 uint8_t bRfid;
 uint8_t bRftriger;
-void TIMER3_IRQHandler(void)
+void TIMER2_IRQHandler(void)
 {
-		if (RESET != timer_interrupt_flag_get(TIMER3, TIMER_INT_FLAG_UP))
+		if (RESET != timer_interrupt_flag_get(TIMER2, TIMER_INT_FLAG_UP))
 		{
 			if(!rfid_flag)
 			{
@@ -307,7 +309,7 @@ void TIMER3_IRQHandler(void)
 				
 				}
 			}
-			timer_interrupt_flag_clear(TIMER3, TIMER_INT_FLAG_UP);
+			timer_interrupt_flag_clear(TIMER2, TIMER_INT_FLAG_UP);
 		}
 }
 u8 IraSta;	  
@@ -395,21 +397,44 @@ void gpio_config(void)
 {
 	rcu_periph_clock_enable(RCU_GPIOA| RCU_GPIOB);
   rcu_periph_clock_enable(RCU_AF);
-	gpio_init(GPIOA, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_1);
-	gpio_init(GPIOB, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_0);
+	gpio_init(IRAOUT_PORT, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, IRAOUT);//IRA_OUT  38K PWM TIMER1_CH1
+	gpio_init(RFIDOUT_PORT, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, RFIDOUT);//RFID_OUT 125K PWM TIMER3_CH0
 	
 	/***CC1101****/
-	rcu_periph_clock_enable(RCU_GPIOB);
-	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_7);//CSN
-	gpio_init(GPIOA, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_2);//GDO0
+	//gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_7);//CSN
+	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_0);//GDO0
 	//
-	rcu_periph_clock_enable(RCU_GPIOB);
-	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_6);
-	gpio_init(GPIOA, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_8);//KEY_INPUT
+	/***IRA_SYSTEM****/
+	gpio_init(IRAIN_PORT, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, IRAIN);//IRA_IN
+	gpio_init(KEYIN_PORT, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, KEYIN);//KEY_INPUT
+	
+	/***LED1, LED2***/
+	gpio_init(LED_PORT, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, LED1);
+	gpio_init(LED_PORT, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, LED2);
+	gpio_bit_set(LED_PORT, LED1);
+	gpio_bit_set(LED_PORT, LED2);
 }
 u8 attack_flag;
 /*******************************************************************************************/
-
+/*********************************************LED_OP**********************************************/
+void LED_OP(u8 led, u8 sw)
+{
+	if(led == 1)
+	{
+		if(sw == ON)
+			gpio_bit_reset(LED_PORT, LED1);
+		else
+			gpio_bit_set(LED_PORT, LED1);
+	}
+	if(led == 2)
+	{
+		if(sw == ON)
+			gpio_bit_reset(LED_PORT, LED2);
+		else
+			gpio_bit_set(LED_PORT, LED2);
+	}
+		
+}
 
 /*********************************************EXTI_CONFIG**********************************************/
 /*******************************************************************************************/
@@ -471,12 +496,12 @@ static const u8 CC1101InitData[22][2]=
 
 void CC_CSN_LOW(void)
 {
-	gpio_bit_reset(GPIOB, GPIO_PIN_7);
+	gpio_bit_reset(GPIOB, GPIO_PIN_1);
 }
 
 void CC_CSN_HIGH(void)
 {
-	gpio_bit_set(GPIOB, GPIO_PIN_7);
+	gpio_bit_set(GPIOB, GPIO_PIN_1);
 }
 
 void CC1101WriteCmd( u8 command )

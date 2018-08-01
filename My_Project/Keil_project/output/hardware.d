@@ -53,6 +53,7 @@
 .\output\hardware.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_enet.h
 .\output\hardware.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_misc.h
 .\output\hardware.o: ..\..\Utilities\gd32f10x_eval.h
+.\output\hardware.o: G:\MDK\ARM\ARMCC\Bin\..\include\string.h
 .\output\hardware.o: ..\systick.h
 .\output\hardware.o: ..\timer.h
 .\output\hardware.o: ..\gpio.h

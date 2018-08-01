@@ -53,6 +53,7 @@
 .\output\rfid.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_enet.h
 .\output\rfid.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_misc.h
 .\output\rfid.o: ..\..\Utilities\gd32f10x_eval.h
+.\output\rfid.o: G:\MDK\ARM\ARMCC\Bin\..\include\string.h
 .\output\rfid.o: ..\systick.h
 .\output\rfid.o: ..\timer.h
 .\output\rfid.o: ..\gpio.h

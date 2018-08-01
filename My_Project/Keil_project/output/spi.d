@@ -54,6 +54,7 @@
 .\output\spi.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_enet.h
 .\output\spi.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_misc.h
 .\output\spi.o: ..\..\Utilities\gd32f10x_eval.h
+.\output\spi.o: G:\MDK\ARM\ARMCC\Bin\..\include\string.h
 .\output\spi.o: ..\systick.h
 .\output\spi.o: ..\timer.h
 .\output\spi.o: ..\gpio.h

@@ -192,7 +192,7 @@ void vTaskBeAttack(void *pvParameters)
 		}
 
 		//printf("I'm Task55555555\r\n");
-		vTaskDelay(1);
+		vTaskDelay(10);
 	
 	}
 }

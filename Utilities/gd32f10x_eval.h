@@ -109,17 +109,27 @@ typedef enum
 #define USER_KEY_EXTI_PIN_SOURCE         GPIO_EVENT_PIN_14
 #define USER_KEY_EXTI_IRQn               EXTI10_15_IRQn
 
-#define RFIDIN GPIO_PIN_5
+#define RFIDOUT GPIO_PIN_6
+#define	RFIDOUT_PORT GPIOB
+
+#define RFIDIN GPIO_PIN_7
 #define	RFIDIN_PORT GPIOB
 
 #define KEYIN GPIO_PIN_8
 #define	KEYIN_PORT GPIOA
 
-#define IRQ0	GPIO_PIN_2
-#define IRQ0_PORT	GPIOA
+#define IRQ0	GPIO_PIN_0
+#define IRQ0_PORT	GPIOB
 
-#define IRAIN_PORT GPIOA
-#define IRAIN	GPIO_PIN_4
+#define IRAOUT_PORT GPIOA
+#define IRAOUT	GPIO_PIN_1
+
+#define IRAIN_PORT GPIOB
+#define IRAIN	GPIO_PIN_11
+
+#define LED_PORT GPIOB
+#define LED1	GPIO_PIN_9
+#define LED2	GPIO_PIN_8
 /* function declarations */
 /* configure led GPIO */
 void gd_eval_led_init(led_typedef_enum lednum);

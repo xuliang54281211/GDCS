@@ -52,6 +52,7 @@
 .\output\coretask.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_enet.h
 .\output\coretask.o: ..\..\Firmware\GD32F10x_standard_peripheral\Include\gd32f10x_misc.h
 .\output\coretask.o: ..\..\Utilities\gd32f10x_eval.h
+.\output\coretask.o: G:\MDK\ARM\ARMCC\Bin\..\include\string.h
 .\output\coretask.o: ..\systick.h
 .\output\coretask.o: ..\timer.h
 .\output\coretask.o: ..\gpio.h

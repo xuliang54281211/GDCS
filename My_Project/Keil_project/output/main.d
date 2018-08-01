@@ -53,6 +53,7 @@
 .\output\main.o: ..\..\FreeRTOS\Source\include\semphr.h
 .\output\main.o: ..\..\FreeRTOS\Source\include\event_groups.h
 .\output\main.o: ..\..\FreeRTOS\Source\include\timers.h
+.\output\main.o: G:\MDK\ARM\ARMCC\Bin\..\include\string.h
 .\output\main.o: ..\systick.h
 .\output\main.o: ..\timer.h
 .\output\main.o: ..\gpio.h
